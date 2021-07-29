@@ -25,7 +25,7 @@
                 class="treeview-item treeview-item-3" 
                 v-for="i2 in i.child"
                 :key="items.id + i2.title"
-                v-show="i.show"
+                v-show="i.show & items.show"
             >
                 <checkbox v-model="i2.checked" :title="i2.title" />
                 <img 
