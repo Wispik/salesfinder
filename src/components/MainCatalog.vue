@@ -4,18 +4,26 @@
         class="catalog-item"
         v-for="cat in catalog_items"
         :key="cat.id"
-        @click.stop="tooglePopup(cat.id)"
+        @click.stop="openPopup(cat.id)"
       >
-        <img :src="require(`@/assets/images/icons/${cat.icon}.svg`)">
-        {{ cat.title }}
-        <div class="catalog-item-popup" v-if="cat.show_popup" v-click-outside="tooglePopup">
-
+        <div class="catalog-item-button">
+            <img :src="require(`@/assets/images/icons/${cat.icon}.svg`)">
+            {{ cat.title }}
         </div>
+        <fade-transition>
+            <div class="catalog-item-popup" v-if="cat.show_popup" v-click-outside="closePopups">
+                <tree-view :items="getCategory(cat.id)" />
+            </div>
+        </fade-transition>
       </div>
   </div>
 </template>
 
 <script>
+import TreeView from '@/components/TreeView.vue'
+import {FadeTransition} from 'vue2-transitions'
+import {categories} from '@/fake'
+
 export default {
     data() {
         return {
@@ -147,15 +155,35 @@ export default {
                     show_popup: false
                 }
             ],
+            categories: categories
         }
     },
+    components: {
+        FadeTransition,
+        TreeView
+    },
     methods: {
-        tooglePopup(id) {
+        openPopup(id) {
             this.catalog_items.forEach(item => {
                 if (item.id == id) {
-                    item.show_popup = !item.show_popup
+                    item.show_popup = true
+                }
+                else {
+                    if (item.show_popup) {
+                        item.show_popup = false
+                    }
                 }
             })
+        },
+        closePopups() {
+            this.catalog_items.forEach(item => {
+                if (item.show_popup) {
+                    item.show_popup = false
+                }
+            })
+        },
+        getCategory(id) {
+            return this.categories.find(item => item.id == id)
         }
     }
 }
@@ -172,9 +200,6 @@ export default {
 
     .catalog-item {
         width: 195px;
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
         margin: 12px 0;
         font-family: PT Sans;
         font-style: normal;
@@ -182,11 +207,17 @@ export default {
         font-size: 1.6rem;
         line-height: 2.4rem;
         color: rgba(0, 0, 0, 0.9);
-        cursor: pointer;
         position: relative;
     }
 
-    .catalog-item > img {
+    .catalog-item-button {
+        cursor: pointer;
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+    }   
+
+    .catalog-item-button > img {
         margin-right: 12px;
     }
 
@@ -194,7 +225,12 @@ export default {
         position: absolute;
         width: 258px;
         height: 312px;
-        left: 0;
-        top: 48px;
+        left: -8px;
+        top: -17px;
+        background: #FFFFFF;
+        border: 1px solid rgba(0, 0, 0, 0.02);
+        box-shadow: 0px 2px 11px rgba(0, 0, 0, 0.16);
+        border-radius: 4px;
+        z-index: 100;
     }
 </style>

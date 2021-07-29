@@ -13,34 +13,36 @@
                 </div>
                 <img :src="require(`@/assets/images/header/arrow.svg`)">
               </div>
-              <div class="header__search-settings-popup" v-if="show_settings_popup" v-click-outside="toogleSettingsPopup">
-                  <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_wb}">
-                    <checkbox v-model='cb_wb' title='Wildberries' />
-                  </div>
-                  <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_ozon}">
-                    <checkbox v-model='cb_ozon' title='OZON' />
-                  </div>
-                  <div class="header__search-settings-popup-line"></div>
-                  <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_category}">
-                    <checkbox v-model='cb_category' title='Категории' />
-                  </div>
-                  <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_products}">
-                    <checkbox v-model='cb_products' title='Товары' />
-                  </div>
-                  <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_brands}">
-                    <checkbox v-model='cb_brands' title='Бренды' />
-                  </div>
-                  <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_sellers}">
-                    <checkbox v-model='cb_sellers' title='Продавцы' />
-                  </div>
-                  <div class="header__search-settings-popup-line"></div>
-                  <button class="btn-outline header__search-settings-popup-btn">
-                      Сбросить
-                  </button>
-                  <button class="btn-blue header__search-settings-popup-btn">
-                      Применить
-                  </button>
-              </div>
+              <slide-y-up-transition>
+                <div class="header__search-settings-popup" v-if="show_settings_popup" v-click-outside="toogleSettingsPopup">
+                    <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_wb}">
+                        <checkbox v-model='cb_wb' title='Wildberries' />
+                    </div>
+                    <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_ozon}">
+                        <checkbox v-model='cb_ozon' title='OZON' />
+                    </div>
+                    <div class="header__search-settings-popup-line"></div>
+                    <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_category}">
+                        <checkbox v-model='cb_category' title='Категории' />
+                    </div>
+                    <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_products}">
+                        <checkbox v-model='cb_products' title='Товары' />
+                    </div>
+                    <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_brands}">
+                        <checkbox v-model='cb_brands' title='Бренды' />
+                    </div>
+                    <div class="header__search-settings-popup-item" :class="{'header__search-settings-popup-item-active': cb_sellers}">
+                        <checkbox v-model='cb_sellers' title='Продавцы' />
+                    </div>
+                    <div class="header__search-settings-popup-line"></div>
+                    <button class="btn-outline header__search-settings-popup-btn" @click.stop="resetSettings">
+                        Сбросить
+                    </button>
+                    <button class="btn-blue header__search-settings-popup-btn">
+                        Применить
+                    </button>
+                </div>
+              </slide-y-up-transition>
           </div>
           <input 
             type="text" 
@@ -64,6 +66,7 @@
 
 <script>
 import Checkbox from '@/components/Checkbox.vue'
+import { SlideYUpTransition } from 'vue2-transitions'
 
 export default {
     data() {
@@ -81,6 +84,14 @@ export default {
     methods: {
         toogleSettingsPopup() {
             this.show_settings_popup = !this.show_settings_popup
+        },
+        resetSettings() {
+            this.cb_wb = false
+            this.cb_ozon = false
+            this.cb_category = false
+            this.cb_products = false
+            this.cb_brands = false
+            this.cb_sellers = false
         }
     },
     created() {
@@ -89,7 +100,8 @@ export default {
         this.$on('hook:beforeDestroy', () => document.removeEventListener('click', onClickOutside));
     },
     components: {
-        Checkbox
+        Checkbox,
+        SlideYUpTransition
     }
 }
 </script>
@@ -208,6 +220,7 @@ export default {
         display: flex;
         flex-direction: column;
         padding-bottom: 16px;
+        z-index: 50;
     }
 
     .header__search-settings-popup-item {
