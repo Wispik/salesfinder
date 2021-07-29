@@ -10,6 +10,11 @@ const routes = [
     name: 'Home',
     component: Home
   },
+  {
+    path: '/(wb|ozon)/(category|products|brands|sellers|rating)',
+    name: 'MainInfo',
+    component: Home
+  }
   // {
   //   path: '/about',
   //   name: 'About',

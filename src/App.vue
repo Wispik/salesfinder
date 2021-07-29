@@ -22,8 +22,6 @@ export default {
 
 <style lang="scss">
   .app {
-    width: 100vw;
-    height: 100vh;
     display: flex;
     flex-flow: row nowrap;
   }

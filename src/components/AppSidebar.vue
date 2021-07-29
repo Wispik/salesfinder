@@ -3,6 +3,7 @@
         <router-link 
             class="sidebar__logo"    
             to='/'
+            active-class=''
         >
             <img :src="require(`@/assets/images/logo.svg`)" alt="Logo">
         </router-link>
@@ -14,6 +15,7 @@
                 class="sidebar__li"
                 :class="{'sidebar__li-big': item.icon}"
                 tag="li"
+                exact
             >
                 <img :src="require(`@/assets/images/sidebar/${item.icon}`)" v-if="item.icon">
                 {{ item.title }}
@@ -32,73 +34,73 @@ export default {
                         id: 0,
                         icon: 'wb.svg',
                         title: 'Wildberries',
-                        route: '/'
+                        route: '/wb/'
                     },
                     {
                         id: 1,
                         icon: '',
                         title: 'Категории',
-                        route: '/'
+                        route: '/wb/category/'
                     },
                     {
                         id: 2,
                         icon: '',
                         title: 'Товары',
-                        route: '/'
+                        route: '/wb/products/'
                     },
                     {
                         id: 3,
                         icon: '',
                         title: 'Бренды',
-                        route: '/'
+                        route: '/wb/brands/'
                     },
                     {
                         id: 4,
                         icon: '',
                         title: 'Продавцы',
-                        route: '/'
+                        route: '/wb/sellers/'
                     },
                     {
                         id: 5,
                         icon: '',
                         title: 'Рейтинги',
-                        route: '/'
+                        route: '/wb/ratings/'
                     },
                     {
                         id: 6,
                         icon: 'ozon.svg',
                         title: 'OZON',
-                        route: '/'
+                        route: '/ozon/'
                     },
                     {
                         id: 7,
                         icon: '',
                         title: 'Категории',
-                        route: '/'
+                        route: '/ozon/category/'
                     },
                     {
                         id: 8,
                         icon: '',
                         title: 'Товары',
-                        route: '/'
+                        route: '/ozon/products/'
                     },
                     {
                         id: 9,
                         icon: '',
                         title: 'Бренды',
-                        route: '/'
+                        route: '/ozon/brands/'
                     },
                     {
                         id: 10,
                         icon: '',
                         title: 'Продавцы',
-                        route: '/'
+                        route: '/ozon/sellers/'
                     },
                     {
                         id: 11,
                         icon: '',
                         title: 'Рейтинги',
-                        route: '/'
+                        route: '/ozon/ratings/'
                     },
                     {
                         id: 12,
@@ -145,7 +147,6 @@ export default {
 <style lang="scss">
     .sidebar {
         width: 200px;
-        height: 100%;
         background: #354052;
         display: flex;
         flex-direction: column;
@@ -168,6 +169,10 @@ export default {
         padding: 7px 20px;
         font-weight: 500;
         cursor: pointer;
+    }
+
+    .sidebar__li:hover {
+        background: #283140;
     }
 
     .sidebar__li-big {
@@ -202,5 +207,20 @@ export default {
 
     .sidebar__li-big:first-child::before {
         display: none;
+    }
+
+    .router-link-active {
+        background: #283140;
+        position: relative;
+    }
+
+    .router-link-active::before {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 6px;
+        background: #C61B19;
+        top: 0;
+        left: 0;
     }
 </style>
