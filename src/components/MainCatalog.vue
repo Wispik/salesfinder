@@ -215,7 +215,12 @@ export default {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
-    }   
+        transition: 0.1s;
+    }
+
+    .catalog-item-button:hover {
+        color: #316D92;;
+    }
 
     .catalog-item-button > img {
         margin-right: 12px;

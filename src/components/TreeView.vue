@@ -1,7 +1,7 @@
 <template>
   <div class="treeview">
         <div class="treeview-item">
-            <checkbox v-model="items.checked" :title="items.title" />
+            <checkbox v-model="items.checked" :title="items.title" rounded/>
             <img 
                 :src="require(`@/assets/images/icons/treeview_arrow.svg`)" 
                 v-if="items.child.length > 0"
@@ -13,7 +13,7 @@
             v-for="i in items.child"
         >
             <div class="treeview-item treeview-item-2" :key="items.id + i.title" v-if="items.show">
-                <checkbox v-model="i.checked" :title="i.title" />
+                <checkbox v-model="i.checked" :title="i.title" rounded/>
                 <img 
                     :src="require(`@/assets/images/icons/treeview_arrow.svg`)" 
                     v-if="i.child.length > 0"
@@ -27,7 +27,7 @@
                 :key="items.id + i2.title"
                 v-show="i.show & items.show"
             >
-                <checkbox v-model="i2.checked" :title="i2.title" />
+                <checkbox v-model="i2.checked" :title="i2.title" rounded/>
                 <img 
                     :src="require(`@/assets/images/icons/treeview_arrow.svg`)" 
                     v-if="i2.child.length > 0"

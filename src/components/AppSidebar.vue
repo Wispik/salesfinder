@@ -18,7 +18,9 @@
                 exact
             >
                 <img :src="require(`@/assets/images/sidebar/${item.icon}`)" v-if="item.icon">
-                {{ item.title }}
+                <span>
+                    {{ item.title }}
+                </span>
             </router-link>
         </ul>
     </aside>
@@ -172,7 +174,7 @@ export default {
     }
 
     .sidebar__li:hover {
-        background: #283140;
+        background: darken(#354052, 3%);
     }
 
     .sidebar__li-big {
@@ -209,9 +211,19 @@ export default {
         display: none;
     }
 
+    .sidebar__li-big > span {
+        height: 28px;
+        display: flex;
+        align-items: center;
+    }
+
     .router-link-active {
-        background: #283140;
+        background: #283140 ;
         position: relative;
+    }
+
+    .router-link-active:hover {
+        background: #283140 ;
     }
 
     .router-link-active::before {

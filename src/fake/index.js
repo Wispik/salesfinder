@@ -4,220 +4,220 @@ const main_table_data = [
             image: 'fake1.png',
             product: 'Рубашка повседневная',
             price: '999',
-            category: 'Блузки и рубашки',
+            category: 100,
             pos: 1,
             rewiews: 890,
             rating: 3,
-            seller: 'BETTALEME'
+            seller: 100
         },
         {
             id: 2,
             image: 'fake2.png',
             product: 'Рубашка',
             price: '1 599.00',
-            category: 'Брюки',
+            category: 100,
             pos: 2,
             rewiews: 890,
             rating: 3,
-            seller: 'Dea Store'
+            seller: 100
         },
         {
             id: 3,
             image: 'fake3.png',
             product: 'Рубашка свободная/прямая',
             price: '2 399.00',
-            category: 'Верхняя одежда',
+            category: 100,
             pos: 3,
             rewiews: 890,
             rating: 3,
-            seller: 'E.Y. Store'
+            seller: 100
         },
         {
             id: 4,
             image: 'fake1.png',
             product: 'Рубашка повседневная',
             price: '999',
-            category: 'Блузки и рубашки',
+            category: 100,
             pos: 1,
             rewiews: 890,
             rating: 3,
-            seller: 'BETTALEME'
+            seller: 100
         },
         {
             id: 5,
             image: 'fake2.png',
             product: 'Рубашка',
             price: '1 599.00',
-            category: 'Брюки',
+            category: 100,
             pos: 2,
             rewiews: 890,
             rating: 3,
-            seller: 'Dea Store'
+            seller: 100
         },
         {
             id: 6,
             image: 'fake3.png',
             product: 'Рубашка свободная/прямая',
             price: '2 399.00',
-            category: 'Верхняя одежда',
+            category: 100,
             pos: 3,
             rewiews: 890,
             rating: 3,
-            seller: 'E.Y. Store'
+            seller: 100
         },
         {
             id: 7,
             image: 'fake1.png',
             product: 'Рубашка повседневная',
             price: '999',
-            category: 'Блузки и рубашки',
+            category: 100,
             pos: 1,
             rewiews: 890,
             rating: 3,
-            seller: 'BETTALEME'
+            seller: 100
         },
         {
             id: 8,
             image: 'fake2.png',
             product: 'Рубашка',
             price: '1 599.00',
-            category: 'Брюки',
+            category: 100,
             pos: 2,
             rewiews: 890,
             rating: 3,
-            seller: 'Dea Store'
+            seller: 100
         },
         {
             id: 9,
             image: 'fake3.png',
             product: 'Рубашка свободная/прямая',
             price: '2 399.00',
-            category: 'Верхняя одежда',
+            category: 100,
             pos: 3,
             rewiews: 890,
             rating: 3,
-            seller: 'E.Y. Store'
+            seller: 100
         },
         {
             id: 10,
             image: 'fake3.png',
             product: 'Рубашка свободная/прямая',
             price: '2 399.00',
-            category: 'Верхняя одежда',
+            category: 100,
             pos: 3,
             rewiews: 890,
             rating: 3,
-            seller: 'E.Y. Store'
+            seller: 100
         },
         {
             id: 11,
             image: 'fake1.png',
             product: 'Рубашка повседневная',
             price: '999',
-            category: 'Блузки и рубашки',
+            category: 100,
             pos: 1,
             rewiews: 890,
             rating: 3,
-            seller: 'BETTALEME'
+            seller: 100
         },
         {
             id: 12,
             image: 'fake2.png',
             product: 'Рубашка',
             price: '1 599.00',
-            category: 'Брюки',
+            category: 100,
             pos: 2,
             rewiews: 890,
             rating: 3,
-            seller: 'Dea Store'
+            seller: 100
         },
         {
             id: 13,
             image: 'fake3.png',
             product: 'Рубашка свободная/прямая',
             price: '2 399.00',
-            category: 'Верхняя одежда',
+            category: 100,
             pos: 3,
             rewiews: 890,
             rating: 3,
-            seller: 'E.Y. Store'
+            seller: 100
         },
         {
             id: 14,
             image: 'fake1.png',
             product: 'Рубашка повседневная',
             price: '999',
-            category: 'Блузки и рубашки',
+            category: 100,
             pos: 1,
             rewiews: 890,
             rating: 3,
-            seller: 'BETTALEME'
+            seller: 100
         },
         {
             id: 15,
             image: 'fake2.png',
             product: 'Рубашка',
             price: '1 599.00',
-            category: 'Брюки',
+            category: 100,
             pos: 2,
             rewiews: 890,
             rating: 3,
-            seller: 'Dea Store'
+            seller: 100
         },
         {
             id: 16,
             image: 'fake3.png',
             product: 'Рубашка свободная/прямая',
             price: '2 399.00',
-            category: 'Верхняя одежда',
+            category: 100,
             pos: 3,
             rewiews: 890,
             rating: 3,
-            seller: 'E.Y. Store'
+            seller: 100
         },
         {
             id: 17,
             image: 'fake1.png',
             product: 'Рубашка повседневная',
             price: '999',
-            category: 'Блузки и рубашки',
+            category: 100,
             pos: 1,
             rewiews: 890,
             rating: 3,
-            seller: 'BETTALEME'
+            seller: 100
         },
         {
             id: 18,
             image: 'fake2.png',
             product: 'Рубашка',
             price: '1 599.00',
-            category: 'Брюки',
+            category: 100,
             pos: 2,
             rewiews: 890,
             rating: 3,
-            seller: 'Dea Store'
+            seller: 100
         },
         {
             id: 19,
             image: 'fake3.png',
             product: 'Рубашка свободная/прямая',
             price: '2 399.00',
-            category: 'Верхняя одежда',
+            category: 100,
             pos: 3,
             rewiews: 890,
             rating: 3,
-            seller: 'E.Y. Store'
+            seller: 100
         },
         {
             id: 20,
             image: 'fake3.png',
             product: 'Рубашка свободная/прямая',
             price: '2 399.00',
-            category: 'Верхняя одежда',
+            category: 100,
             pos: 3,
             rewiews: 890,
             rating: 3,
-            seller: 'E.Y. Store'
+            seller: 100
         }
     ]
 
