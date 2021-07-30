@@ -1,10 +1,9 @@
 <template>
   <header class="header">
       <div class="header__search-block" :class="{'header__search-block-active': input_focused}">
-          <div class="header__search-settings">
+          <div class="header__search-settings" :class="{'header__search-settings-button-active': show_settings_popup}">
               <div 
                 class="header__search-settings-button"
-                :class="{'header__search-settings-button-active': show_settings_popup}"
                 @click="toogleSettingsPopup"
             >
                 <div 
@@ -264,6 +263,10 @@ export default {
         align-items: center;
     }
 
+    .header__search-settings:hover {
+        background: darken(#FAFAFA, 8%);
+    }
+
     .header__search-settings-button {
         font-family: 'Ubuntu';
         font-weight: 400;
@@ -275,10 +278,6 @@ export default {
         padding: 7px 12px;
         border-radius: 4px;
         transition: 0.4s;
-    }
-
-    .header__search-settings-button:hover {
-        background: darken(#FAFAFA, 8%);
     }
 
     .header__search-settings-button-active {

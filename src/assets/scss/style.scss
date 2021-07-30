@@ -9,6 +9,7 @@
 html {
     font-family: 'Ubuntu', sans-serif;
     font-size: 10px;
+    -webkit-font-smoothing: antialiased;
 }
 
 input {
@@ -32,4 +33,7 @@ button {
     font-size: 1.4rem;
     line-height: 2.2rem;
     transition: .4s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
