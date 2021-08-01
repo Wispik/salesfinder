@@ -251,8 +251,7 @@ export default {
         box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.42);
     }
 
-    .header__search-settings {
-        
+    .header__search-settings {  
         width: 193px;
         background: #FAFAFA;
         border-radius: 4px;
@@ -261,6 +260,7 @@ export default {
         margin: 4px 0;
         display: flex;
         align-items: center;
+        transition: .4s;
     }
 
     .header__search-settings:hover {

@@ -1,42 +1,42 @@
 <template>
-  <div class="treeview">
-        <div class="treeview-item">
-            <checkbox v-model="items.checked" :title="items.title" rounded/>
-            <img 
-                :src="require(`@/assets/images/icons/treeview_arrow.svg`)" 
-                v-if="items.child.length > 0"
-                @click.stop="items.show = !items.show"
-                :class="{'treeview-item__close': !items.show}"    
-            >
-        </div>
-        <template
-            v-for="i in items.child"
-        >
-            <div class="treeview-item treeview-item-2" :key="items.id + i.title" v-if="items.show">
-                <checkbox v-model="i.checked" :title="i.title" rounded/>
+  <vue-custom-scrollbar class="treeview" :settings="scrollSettings">
+            <div class="treeview-item">
+                <checkbox v-model="items.checked" :title="items.title" @change="selectItem(items)" rounded/>
                 <img 
                     :src="require(`@/assets/images/icons/treeview_arrow.svg`)" 
-                    v-if="i.child.length > 0"
-                    @click.stop="i.show = !i.show"
-                    :class="{'treeview-item__close': !i.show}"    
+                    v-if="items.child.length > 0"
+                    @click.stop="items.show = !items.show"
+                    :class="{'treeview-item__close': !items.show}"    
                 >
             </div>
-            <div 
-                class="treeview-item treeview-item-3" 
-                v-for="i2 in i.child"
-                :key="items.id + i2.title"
-                v-show="i.show & items.show"
+            <template
+                v-for="i in items.child"
             >
-                <checkbox v-model="i2.checked" :title="i2.title" rounded/>
-                <img 
-                    :src="require(`@/assets/images/icons/treeview_arrow.svg`)" 
-                    v-if="i2.child.length > 0"
-                    @click.stop="i2.show = !i2.show"
-                    :class="{'treeview-item__close': !i2.show}"    
-                >
-            </div>
-        </template>
-  </div>
+                <div class="treeview-item treeview-item-2" :key="items.id + i.title" v-if="items.show">
+                    <checkbox v-model="i.checked" :title="i.title" @change="selectItem(i)" rounded/>
+                    <img 
+                        :src="require(`@/assets/images/icons/treeview_arrow.svg`)" 
+                        v-if="i.child.length > 0"
+                        @click.stop="i.show = !i.show"
+                        :class="{'treeview-item__close': !i.show}"    
+                    >
+                </div>
+                    <div 
+                        class="treeview-item treeview-item-3" 
+                        v-for="i2 in i.child"
+                        :key="items.id + i2.title"
+                        v-show="i.show & items.show"
+                    >
+                        <checkbox v-model="i2.checked" :title="i2.title" rounded/>
+                        <img 
+                            :src="require(`@/assets/images/icons/treeview_arrow.svg`)" 
+                            v-if="i2.child.length > 0"
+                            @click.stop="i2.show = !i2.show"
+                            :class="{'treeview-item__close': !i2.show}"    
+                        >
+                    </div>
+            </template>
+        </vue-custom-scrollbar>
 </template>
 
 <script>
@@ -44,12 +44,27 @@ import Checkbox from '@/components/Checkbox.vue'
 
 export default {
     props: ['items'],
-    date() {
+    data() {
         return {
+            scrollSettings: {
+                suppressScrollX: true,
+                suppressScrollY: false,
+                wheelPropagation: false
+            }
         }
     },
     components: {
         Checkbox
+    },
+    methods: {
+        selectItem(item) {
+            item.child.forEach(el => {
+                el.checked = item.checked
+                el.child.forEach(e => {
+                    e.checked = el.checked
+                })
+            });
+        }
     }
 }
 </script>
@@ -58,6 +73,7 @@ export default {
     .treeview {
         padding: 12px 16px;
         height: 100%;
+        position: relative;
     }
 
     .treeview-item {
@@ -82,5 +98,12 @@ export default {
 
     .treeview-item-3 {
         padding-left: 32px;
+    }
+
+    .treeview-scrollbar {
+        height: 100%;
+        position: relative;
+        width: 200px;
+        height: 400px;
     }
 </style>

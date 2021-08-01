@@ -16,13 +16,13 @@
         </svg>
       </button>
       <slide-y-up-transition>
-        <div class="main-search-result" v-if="show_search_results">
+        <div class="main-search-result" v-if="show_search_results & search_results.length > 0">
           <div 
             class="main-search-resilt-item"
             v-for="(res, i) in search_results"
             :key="i"
+            v-html="formatSearchResult(res)">
           >
-            {{ res }}
           </div>
         </div>
       </slide-y-up-transition>
@@ -50,10 +50,13 @@ import MainCatalog from '@/components/MainCatalog.vue'
 import { SlideYUpTransition } from 'vue2-transitions'
 import { main_table_data } from '@/fake'
 
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Home',
   data() {
     return {
+      NUM_SEARCH_RESULTS: 10,
       table_data: main_table_data,
       search_placeholder: '',
       search_placeholders_list: [
@@ -98,13 +101,7 @@ export default {
       show_btn_ratings: false,
       show_catalogs: false,
       show_search_results: false,
-      search_results: [
-        'Женщинам / Одежда',
-        'Мужчинам / Одежда',
-        'Обувь',
-        'Аксессуары / Ожерелья',
-        'Дом / Мягкая мебель / Спальная комната / Одеяло'
-      ]
+      search_results: []
     }
   },
   components: {
@@ -138,14 +135,47 @@ export default {
       this.show_search_results=false
     },
     change_search_input() {
-      if (this.search_input.length == 0) this.show_search_results=false
-      if (this.search_input.length > 0 & !this.show_search_results) this.show_search_results = true
+      if (this.search_input.length == 0) {
+        this.show_search_results=false
+        this.search_results = []
+      }
+      if (this.search_input.length > 0 & !this.show_search_results) {
+        this.show_search_results = true
+      }
+      if (this.search_input.length > 0) {
+        this.search(this.search_input)
+      }
+    },
+    search(s) {
+      let res = []
+      for (let i = 0; i < this.CATEGORIES_FOR_SEARCH.length; i++) {
+        const el = this.CATEGORIES_FOR_SEARCH[i];
+        if (el.toLowerCase().includes(s.toLowerCase())) {
+          res.push(el)
+          if (res.length == this.NUM_SEARCH_RESULTS) break
+        }
+      }
+      this.search_results = res
+    },
+    formatSearchResult(current) {
+      let reggie = new RegExp(this.search_input, "ig");
+      let pos = current.search(reggie)
+      if (pos == -1) {
+        return current
+      } else {
+        const len_search = this.search_input.length
+        let res = `${current.substring(0, pos)}<span class="blue-text">${current.substring(pos, pos+len_search)}</span>${current.substring(pos+len_search)}`
+        return res
+      }
     }
   },
   watch: {
     $route(to) {
         this.loadVars(to.params[1])
     }
+  },
+  computed: {
+    ...mapGetters(['CATEGORIES_FOR_SEARCH'])
   }
 
 }
@@ -264,5 +294,9 @@ export default {
 
   .btn-analize {
     margin-top: 48px;
+  }
+
+  .blue-text {
+    color: #316D92;
   }
 </style>
