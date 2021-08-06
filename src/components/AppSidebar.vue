@@ -8,20 +8,34 @@
             <img :src="require(`@/assets/images/logo.svg`)" alt="Logo">
         </router-link>
         <ul class="sidebar__ul">
-            <router-link
+            <li
                 v-for="item in menu"
                 :key="item.id"
-                :to="item.route"
                 class="sidebar__li"
                 :class="{'sidebar__li-big': item.icon}"
-                tag="li"
-                exact
             >
-                <img :src="require(`@/assets/images/sidebar/${item.icon}`)" v-if="item.icon">
-                <span>
-                    {{ item.title }}
-                </span>
-            </router-link>
+                <router-link
+                    v-if="item.route"
+                    :to=item.route
+                    class="sidebar__li-item sidebar__li-item-link"
+                    tag="div"
+                    exact
+                >
+                    <img :src="require(`@/assets/images/sidebar/${item.icon}`)" v-if="item.icon">
+                    <span>
+                        {{ item.title }}
+                    </span>
+                </router-link>
+                <div 
+                    v-else
+                    class="sidebar__li-item"
+                >
+                    <img :src="require(`@/assets/images/sidebar/${item.icon}`)" v-if="item.icon">
+                    <span>
+                        {{ item.title }}
+                    </span>
+                </div>
+            </li>
         </ul>
     </aside>
 </template>
@@ -36,7 +50,7 @@ export default {
                         id: 0,
                         icon: 'wb.svg',
                         title: 'Wildberries',
-                        route: '/wb/'
+                        route: ''
                     },
                     {
                         id: 1,
@@ -72,7 +86,7 @@ export default {
                         id: 6,
                         icon: 'ozon.svg',
                         title: 'OZON',
-                        route: '/ozon/'
+                        route: ''
                     },
                     {
                         id: 7,
@@ -120,7 +134,7 @@ export default {
                         id: 14,
                         icon: 'about.svg',
                         title: 'О сервисе',
-                        route: '/'
+                        route: ''
                     },
                     {
                         id: 15,
@@ -168,16 +182,28 @@ export default {
     }
 
     .sidebar__li {
-        padding: 7px 20px;
         font-weight: 500;
+    }
+
+    .sidebar__li-line {
+        width: 100%;
+        height: 1px;
+        background: #434E60;
+    }
+
+    .sidebar__li-item {
+        padding: 7px 20px;
+    }
+
+    .sidebar__li-item.sidebar__li-item-link {
         cursor: pointer;
     }
 
-    .sidebar__li:hover {
+    .sidebar__li-item.sidebar__li-item-link:hover {
         background: darken(#354052, 3%);
     }
 
-    .sidebar__li-big {
+    .sidebar__li-big > .sidebar__li-item {
         display: flex;
         flex-flow: row nowrap;
         align-items: flex-end;
@@ -193,7 +219,7 @@ export default {
         }
     }
 
-    .sidebar__li-big::before {
+    .sidebar__li-big > .sidebar__li-item::before {
         content: '';
         position: absolute;
         width: 100%;
@@ -203,15 +229,15 @@ export default {
         left: 0;
     }
 
-    .sidebar__li-big:first-child {
+    .sidebar__li-big:first-child > .sidebar__li-item {
         height: 52px;
     }
 
-    .sidebar__li-big:first-child::before {
+    .sidebar__li-big:first-child > .sidebar__li-item::before {
         display: none;
     }
 
-    .sidebar__li-big > span {
+    .sidebar__li-big > .sidebar__li-item > span {
         height: 28px;
         display: flex;
         align-items: center;

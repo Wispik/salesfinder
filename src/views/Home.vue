@@ -28,10 +28,10 @@
       </slide-y-up-transition>
     </div>
     <main-catalog v-if="show_catalogs" />
-    <button class="btn-blue btn-analize">
+    <router-link class="btn-blue btn-analize" :to="{name: 'CategoryInfo'}" tag="button">
       Анализировать
-    </button>
-    <h1 class="main-title">
+    </router-link>
+    <h1 class="main-title mt64">
       {{ title_text }}
     </h1>
     <button class="btn-outline btn-ratings" v-if="show_btn_ratings">
@@ -261,13 +261,16 @@ export default {
   }
 
   .main-title {
-    margin-top: 64px;
     font-family: Ubuntu;
     font-style: normal;
     font-weight: 300;
     font-size: 2.4rem;
     line-height: 2.8rem;
     color: rgba(0, 0, 0, 0.9);
+  }
+
+  .main-title.mt64 {
+    margin-top: 64px;
   }
 
   .btn-outline {
@@ -278,6 +281,11 @@ export default {
     box-sizing: border-box;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
     border-radius: 4px;
+  }
+
+  .btn-outline.btn-width-auto {
+    width: auto;
+    padding: 5px 9px;
   }
 
   .btn-outline:hover {

@@ -92,12 +92,14 @@ export default {
       position: absolute;
       z-index: -1;
       opacity: 0;
+      cursor: inherit;
     }
 
     .custom-checkbox {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
+        cursor: inherit;
     }
 
     .custom-checkbox > svg {
