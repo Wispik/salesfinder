@@ -1054,7 +1054,7 @@ const category_table_product = {
             position: 15,
             show: true,
             name: 'sold7days',
-            width: 120
+            width: 180
         },
         {
             id: 14,
@@ -1062,7 +1062,7 @@ const category_table_product = {
             position: 16,
             show: true,
             name: 'revenue7days',
-            width: 120
+            width: 180
         },
         {
             id: 15,
@@ -1070,7 +1070,7 @@ const category_table_product = {
             position: 17,
             show: true,
             name: 'avg_sold',
-            width: 150
+            width: 180
         },
         {
             id: 16,
@@ -1078,7 +1078,7 @@ const category_table_product = {
             position: 18,
             show: true,
             name: 'avg_revenue',
-            width: 150
+            width: 180
         },
         {
             id: 17,
@@ -1086,7 +1086,7 @@ const category_table_product = {
             position: 19,
             show: true,
             name: 'days',
-            width: 150
+            width: 180
         },
         {
             id: 18,
@@ -1094,7 +1094,7 @@ const category_table_product = {
             position: 20,
             show: true,
             name: 'losses',
-            width: 150
+            width: 180
         },
 
     ],

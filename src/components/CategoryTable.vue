@@ -1,7 +1,6 @@
 <template>
   <div class="cat-table">
       <vue-custom-scrollbar class="table-block" :settings="scrollSettings">
-      <!-- <div class="table-block"> -->
         <table class="cat-table__table">
           <tbody>
             <tr class="cat-table__thead">
@@ -16,9 +15,16 @@
                 :key="head.id"
                 v-show="head.show"
                 :width="head.width"
+                @click.stop="setSortBy(head.name)"
               >
                 <div class="cat-table__thead-th-cell">
                   {{ head.title }}
+                  <img 
+                    :src="require(`@/assets/images/icons/table_sort_arrow.svg`)"
+                    v-if="head.name == sortedBy"
+                    class="cat-table__sorted-arrow"
+                    :class="{'sorted-desc': !sortedAsc}"
+                  >
                 </div>
               </td>
             </tr>
@@ -39,7 +45,6 @@
             </tr>
           </tbody>
         </table>
-      <!-- </div> -->
       </vue-custom-scrollbar>
       <div class="cat-table__bottom">
         <div class="cat-table__info">
@@ -80,7 +85,6 @@
           >
         </div>
       </div>
-  <!-- </vue-custom-scrollbar> -->
   </div>
 </template>
 
@@ -113,11 +117,20 @@ export default {
       ],
       select_model: null,
       select_all: false,
-      page: 1
+      page: 1,
+      sortedBy: null,
+      sortedAsc: true
     }
   },
   created() {
     this.select_model = this.select_options[0]
+  },
+  methods: {
+    setSortBy(col) {
+      if (this.sortedBy == col) this.sortedAsc = !this.sortedAsc
+      else this.sortedAsc = true
+      this.sortedBy = col
+    }
   },
   computed: {
     tableHead() {
@@ -140,8 +153,15 @@ export default {
     },
     actualData() {
       if (this.config && this.config.data) {
+        let res = [...this.config.data]
+        if (this.sortedBy) {
+          if (this.sortedAsc)
+            res.sort((a, b) => a[this.sortedBy].toString().localeCompare(b[this.sortedBy].toString()))
+          else
+            res.sort((a, b) => b[this.sortedBy].toString().localeCompare(a[this.sortedBy].toString()))
+        }
         let n = (this.page-1) * this.select_model.title
-        return this.config.data.slice(n, n + this.select_model.title)
+        return res.slice(n, n + this.select_model.title)
       }
       return []
     },
@@ -257,7 +277,6 @@ export default {
     line-height: 2.2rem;
     border-spacing: 0px;
     border-collapse: collapse;
-    // text-align: center;
     vertical-align: middle;
     color: rgba(0, 0, 0, 0.9);
     table-layout: fixed;
@@ -270,6 +289,7 @@ export default {
 
   .cat-table__thead-th {
     font-weight: 500;
+    cursor: pointer;
   }
 
   .cat-table__thead-th:first-child > .cat-table__thead-th-cell{
@@ -305,5 +325,14 @@ export default {
   .cat-table__td-w50 {
     padding-left: 15px;
     width: 50px;
+  }
+
+  .cat-table__sorted-arrow {
+    transition: 0.4s;
+    margin-left: 6px;
+  }
+
+  .cat-table__sorted-arrow.sorted-desc {
+    transform: rotate(180deg);
   }
 </style>
