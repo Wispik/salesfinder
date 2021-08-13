@@ -38,8 +38,7 @@ export default {
       default: false
     },
     title: {
-      type: String,
-      required: true
+      type: String
     },
     // Мы установили `true-value` и `false-value` в true и false по-умолчанию, таким образом
     // мы всегда можем использовать их вместо проверки на то, установлены они или нет.

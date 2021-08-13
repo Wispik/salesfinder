@@ -936,4 +936,245 @@ const categories = [
     },
 ]
 
-export { main_table_data, categories }
+const category_table_product = {
+    head: [
+        {
+            id: 1,
+            title: 'Товар',
+            position: 1,
+            show: true,
+            name: 'title',
+            width: 300
+        },
+        {
+            id: 2,
+            title: 'Раздел',
+            position: 2,
+            show: true,
+            name: 'topic',
+            width: 300
+        },
+        {
+            id: 19,
+            title: 'Артикул',
+            position: 3,
+            show: true,
+            name: 'article',
+            width: 100
+        },
+        {
+            id: 20,
+            title: 'Бренд',
+            position: 4,
+            show: true,
+            name: 'brand',
+            width: 100
+        },
+        {
+            id: 3,
+            title: 'Цена',
+            position: 5,
+            show: true,
+            name: 'price',
+            width: 100
+        },
+        {
+            id: 4,
+            title: 'Позиция',
+            position: 6,
+            show: true,
+            name: 'pos',
+            width: 100
+        },
+        {
+            id: 5,
+            title: 'Отзывы',
+            position: 7,
+            show: true,
+            name: 'reviews',
+            width: 100
+        },{
+            id: 6,
+            title: 'Рейтинги',
+            position: 8,
+            show: true,
+            name: 'ratings',
+            width: 100
+        },{
+            id: 7,
+            title: 'Склад',
+            position: 9,
+            show: true,
+            name: 'warehouse',
+            width: 200
+        },
+        {
+            id: 8,
+            title: 'Продавец',
+            position: 10,
+            show: true,
+            name: 'seller',
+            width: 200
+        },
+        {
+            id: 9,
+            title: 'Остатки (шт)',
+            position: 11,
+            show: true,
+            name: 'remains',
+            width: 80
+        },
+        {
+            id: 10,
+            title: 'Продано (шт)',
+            position: 12,
+            show: true,
+            name: 'sold',
+            width: 120
+        },
+        {
+            id: 11,
+            title: 'Выручка (руб)',
+            position: 13,
+            show: true,
+            name: 'revenue',
+            width: 120
+        },
+        {
+            id: 12,
+            title: 'Впервые / Крайний раз',
+            position: 14,
+            show: true,
+            name: 'date',
+            width: 200
+        },
+        {
+            id: 13,
+            title: 'Продано за 7 дн (шт)',
+            position: 15,
+            show: true,
+            name: 'sold7days',
+            width: 120
+        },
+        {
+            id: 14,
+            title: 'Выручка за 7 дн (руб)',
+            position: 16,
+            show: true,
+            name: 'revenue7days',
+            width: 120
+        },
+        {
+            id: 15,
+            title: 'Среднее продаж за 7 дн (шт)',
+            position: 17,
+            show: true,
+            name: 'avg_sold',
+            width: 150
+        },
+        {
+            id: 16,
+            title: 'Средняя выручка за 7 дн (руб)',
+            position: 18,
+            show: true,
+            name: 'avg_revenue',
+            width: 150
+        },
+        {
+            id: 17,
+            title: 'Дней в наличии за 7 дн',
+            position: 19,
+            show: true,
+            name: 'days',
+            width: 150
+        },
+        {
+            id: 18,
+            title: 'Упущенная за 7 дн (руб)',
+            position: 20,
+            show: true,
+            name: 'losses',
+            width: 150
+        },
+
+    ],
+    data: [
+        {
+            id: 1,
+            title: 'Увлажняющий набор для ухода за волосами Intense 100 (шампунь+кондиционер), 2 шт',
+            image: 'http://images.wbstatic.net/c246x328/new/17780000/17789989-1.jpg',
+            topic: 'Красота/Волосы/Для роста волос/Косметический набор для ухода (5) Красота/Корейские бренды (35)',
+            article: '17789989',
+            brand: 'CP-1',
+            price: '732 ₽',
+            pos: 5,
+            reviews: 228,
+            ratings: 5,
+            warehouse: 'Коледино WB',
+            seller: 'ООО "МАРКЕТ РИТЕЙЛ"',
+            remains: 487,
+            sold: 21,
+            revenue: '15 372 ₽',
+            date: '2021-03-04 2021-08-08',
+            sold7days: 184,
+            revenue7days: '134 688 ₽',
+            avg_sold: 31,
+            avg_revenue: '22 448 ₽',
+            days: 7,
+            losses: '0 ₽',
+            checked: false
+        },
+        {
+            id: 2,
+            title: 'Филлер для волос CP-1 3 Seconds Hair Ringer (Hair Fill-up Ampoule), 170 мл',
+            image: 'http://images.wbstatic.net/c246x328/new/17800000/17803662-1.jpg',
+            topic: 'Красота/Корейские бренды/Эссенция (2)',
+            article: '17803662',
+            brand: 'ESTHETIC HOUSE',
+            price: '1 295 ₽',
+            pos: 2,
+            reviews: 21,
+            ratings: 5,
+            warehouse: 'Коледино WB',
+            seller: 'ООО "МАРКЕТ РИТЕЙЛ"',
+            remains: 58,
+            sold: 2,
+            revenue: '2 592 ₽',
+            date: '2021-02-21 2021-08-08',
+            sold7days: 25,
+            revenue7days: '32 688 ₽',
+            avg_sold: 4,
+            avg_revenue: '5 448 ₽',
+            days: 7,
+            losses: '0 ₽',
+            checked: false
+        },
+        {
+            id: 3,
+            title: 'Набор охлаждающих масок для лица Agave Cooling Hydrogel, 5 шт',
+            image: 'http://images.wbstatic.net/c246x328/new/17800000/17802522-1.jpg',
+            topic: 'Красота/Корейские бренды/Маска гидрогелевая (1)',
+            article: '17802522',
+            brand: 'Petitfee.',
+            price: '929 ₽',
+            pos: 1,
+            reviews: 7,
+            ratings: 5,
+            warehouse: 'Коледино WB',
+            seller: 'ООО "МАРКЕТ РИТЕЙЛ"',
+            remains: 69,
+            sold: 7,
+            revenue: '6 572 ₽',
+            date: '2021-02-21 2021-08-08',
+            sold7days: 29,
+            revenue7days: '26 941 ₽',
+            avg_sold: 6,
+            avg_revenue: '5 388 ₽',
+            days: 7,
+            losses: '0 ₽',
+            checked: false
+        }
+    ]
+}
+
+export { main_table_data, categories, category_table_product }

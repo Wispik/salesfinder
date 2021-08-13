@@ -26,11 +26,19 @@ export default {
     props: ['title', 'info', 'infoMin', 'color'],
     data() {
         return {
+            colors: {
+                "red": {color: '#E0A1B5'}, 
+                "blue": {color: '#6D8A9F'}, 
+                "yellow": {color: '#FFA83F'}, 
+                "fiolet": {color: '#715D9A'} 
+            },
             chartData: {
+                labels: ["1", "2", "3", "4", "5"],
                 datasets: [
                     {
-                        borderColor: "#FAAB31",
-                        data: [10, 80, 30, 70, 0]
+                        borderColor: 'rgba(0, 0, 0, 0.15)',
+                        pointBorderColor: 'transparent',
+                        data: [10, 80, 30, 50, 0]
                     }
                 ]
             },
@@ -51,14 +59,35 @@ export default {
                         ticks: {
                             display: false
                         },
+                        gridLines : {
+                            display: false
+                        }
                     }]
                 },
+                tooltips: {
+                    enabled: false
+                }
             }
         }
     },
     components: {
         LineChart
-    }
+    },
+    // mounted() {
+    //     this.chartData.datasets[0].borderColor = this.colors[this.color]
+    // }
+    // created() {
+    //     this.chartData = {
+    //             labels: ["1", "2", "3", "4", "5"],
+    //             datasets: [
+    //                 {
+    //                     borderColor: this.colors[this.color],
+    //                     pointBorderColor: 'transparent',
+    //                     data: [10, 80, 30, 50, 0]
+    //                 }
+    //             ]
+    //         }
+    // }
 }
 </script>
 

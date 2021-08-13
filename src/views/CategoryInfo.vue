@@ -4,7 +4,9 @@
           <div class="main-title">
               Обзор показателей по категории <span class="blue-text">{{ main_cat }}</span>
           </div>
-          <range-calendar />
+          <range-calendar 
+            v-model='calendar'
+          />
       </div>
       <div class="cat-info__tabs">
           <app-tabs 
@@ -85,12 +87,14 @@
         </app-tabs>
       </div>
       <div class="cat-infa__tables">
-          <category-table />
+          <category-table 
+            :config="table_products_data"
+          />
       </div>
       <table-settings-collumns 
         :show="show_table_settings_collumns" 
         @close="show_table_settings_collumns=false"
-        v-model="table_settings_test_data"
+        v-model="table_products_data.head"
       />
       <table-settings-filters
         :show="show_table_settings_filters"
@@ -110,12 +114,15 @@ import LineChart from '@/components/charts/LineChart.vue'
 import TableSettingsFilters from '@/components/TableSettingsFilters.vue'
 import TableSettingsCollumns from '@/components/TableSettingsCollumns.vue'
 
+import { category_table_product } from '@/fake'
+
 export default {
     data() {
         return {
             main_cat: 'Карнавальные костюмы',
             filter_date_from: '25.03.21',
             filter_date_to: '25.04.21',
+            calendar: ['', ''],
             tabs_charts: [
                 {
                     id: 1,
@@ -215,33 +222,20 @@ export default {
             },
             show_table_settings_collumns: false,
             show_table_settings_filters: false,
-            table_settings_test_data: [
-                {
-                    id: 1,
-                    pos: 1,
-                    title: 'Столбец 1',
-                    show: true
-                },
-                {
-                    id: 2,
-                    pos: 2,
-                    title: 'Столбец 2',
-                    show: true
-                },
-                {
-                    id: 3,
-                    pos: 3,
-                    title: 'Столбец 3',
-                    show: true
-                },
-                {
-                    id: 4,
-                    pos: 4,
-                    title: 'Столбец 4',
-                    show: true
-                }
-            ]
+            table_products_data: {}
         }
+    },
+    mounted() {
+        let data = [...category_table_product.data, ...category_table_product.data, ...category_table_product.data]
+        data = [...data, ...data]
+        data = [...data, ...data, ...data, ...data]
+        data = [...data, ...data, ...data]
+        data = JSON.parse(JSON.stringify(data))
+        data.forEach((el, index) => {
+            el.id = index
+        });
+        this.table_products_data = category_table_product
+        this.table_products_data.data = data
     },
     components: {
         AppTabs,

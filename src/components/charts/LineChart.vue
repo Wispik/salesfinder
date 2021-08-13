@@ -1,8 +1,10 @@
 <script>
-    import { Line } from 'vue-chartjs'
+    import { Line, mixins } from 'vue-chartjs'
+    const { reactiveProp } = mixins
 
     export default {
         extends: Line,
+        mixins: [reactiveProp],
         data() {
             return {
                 gradient: null
@@ -26,7 +28,7 @@
             this.gradient.addColorStop(0.5, "rgba(250, 171, 49, 0.2)");
             this.gradient.addColorStop(1, "rgba(255, 0, 0, 0)");
             this.chartData.datasets[0].backgroundColor = this.gradient
-            this.renderChart(this.chartData, this.options)
+            this.renderChart(this.chartData, this.options) 
         }
     }
 </script>

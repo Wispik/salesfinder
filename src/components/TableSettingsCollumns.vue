@@ -14,11 +14,11 @@
                         <div class="table-settings__title">
                             Настройки отображения столбцов и их порядок
                         </div>
-                        <div class="table-settings__columns-drag-block">
-                            <draggable v-model="drag_model" v-bind="dragOptions" @start="drag=true" @end="drag=false">
+                        <vue-custom-scrollbar class="table-settings__columns-drag-block" :settings="scrollSettings">
+                            <draggable v-model="tableData" v-bind="dragOptions" @start="drag=true" @end="drag=false">
                                 <transition-group type="transition" :name="!drag ? 'flip-list' : null">
                                 <div 
-                                    v-for="el in modelValue" 
+                                    v-for="el in tableData" 
                                     :key="el.id"
                                     class="table-settings__columns-drag-item"
                                 >
@@ -30,11 +30,11 @@
                                 </div>
                                 </transition-group>
                             </draggable>
-                        </div>
+                        </vue-custom-scrollbar>
                     </div>
                     <div class="table-settings__footer">
-                        <button class="btn-outline">Сбросить</button>
-                        <button class="btn-blue">Применить</button>
+                        <button class="btn-outline" @click="reset">Сбросить</button>
+                        <button class="btn-blue" @click="apply">Применить</button>
                     </div>
                 </div>
         </div>
@@ -53,8 +53,13 @@ export default {
     },
     data() {
         return {
-            drag_model: null,
-            drag: false
+            drag: false,
+            scrollSettings: {
+                suppressScrollX: true,
+                suppressScrollY: false,
+                wheelPropagation: false
+            },
+            tableData: []
         }
     },
     props: {
@@ -68,7 +73,18 @@ export default {
     },
     methods: {
         close() {
-            this.$emit('close')
+            this.$emit('close', this.tableData)
+        },
+        reset() {
+            this.tableData = JSON.parse(JSON.stringify(this.modelValue))
+        },
+        apply() {
+            this.tableData.forEach((el, index) => {
+                el.position = index
+            })
+            console.log(this.tableData)
+            this.$emit('change', this.tableData)
+            this.close()
         }
     },
     computed: {
@@ -85,6 +101,9 @@ export default {
         show(newVal) {
             if (newVal) document.body.style.overflow = "hidden";
             else document.body.style.overflow = "auto";
+        },
+        modelValue(newVal) {
+            this.tableData = JSON.parse(JSON.stringify(newVal))
         }
     },
     components: {
@@ -116,7 +135,7 @@ export default {
         top: 0;
         right: 0;
         width: 480px;
-        min-height: 100%;
+        height: 100%;
         background: #FFFFFF;
         display: flex;
         flex-direction: column;
@@ -147,6 +166,8 @@ export default {
         display: flex;
         flex-direction: column;
         padding: 24px;
+        position: relative;
+        height: calc(100% - 160px);
     }
 
     .table-settings__title {
