@@ -100,6 +100,11 @@
         :show="show_table_settings_filters"
         @close="show_table_settings_filters=false"
       />
+      <selected-table-items
+        v-if="selectedItems.length > 0"
+        :items="selectedItems"
+        @deselect="deselect"
+      />
   </div>
 </template>
 
@@ -113,6 +118,7 @@ import { FadeTransition } from 'vue2-transitions'
 import LineChart from '@/components/charts/LineChart.vue'
 import TableSettingsFilters from '@/components/TableSettingsFilters.vue'
 import TableSettingsCollumns from '@/components/TableSettingsCollumns.vue'
+import SelectedTableItems from '@/components/SelectedTableItems.vue'
 
 import { category_table_product } from '@/fake'
 
@@ -225,6 +231,14 @@ export default {
             table_products_data: {}
         }
     },
+    methods: {
+        deselect() {
+            this.table_products_data.data.forEach(el => {
+                el.checked = false
+            })
+            this.select_all = false
+        }
+    },
     mounted() {
         let data = [...category_table_product.data, ...category_table_product.data, ...category_table_product.data]
         data = [...data, ...data]
@@ -237,6 +251,21 @@ export default {
         this.table_products_data = category_table_product
         this.table_products_data.data = data
     },
+    computed: {
+        selectedItems() {
+            if (this.table_products_data && this.table_products_data.data) {
+                let res = []
+                this.table_products_data.data.forEach(el => {
+                    if (el.checked) res.push(el)
+                })
+                return res
+            }
+            else
+            {
+                return []
+            }
+        }
+    },
     components: {
         AppTabs,
         AppSelect,
@@ -246,7 +275,8 @@ export default {
         FadeTransition,
         LineChart,
         TableSettingsFilters,
-        TableSettingsCollumns
+        TableSettingsCollumns,
+        SelectedTableItems
     }
 }
 </script>

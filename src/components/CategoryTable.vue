@@ -209,6 +209,13 @@ export default {
   },
   mounted() {
     if (!this.config.page) this.config.page = 1
+  },
+  watch: {
+    select_all(newVal) {
+      this.actualData.forEach(el => {
+        el.checked = newVal
+      })
+    }
   }
 }
 </script>
