@@ -224,6 +224,29 @@ export default {
                             }
                         },
                     }]
+                },
+                tooltips: {
+                    intersect: false,
+                    borderWidth: 1,
+                    borderColor: 'rgba(0, 0, 0, 0.6)',
+                    caretSize: 0,
+                    backgroundColor: '#ffffff',
+                    xPadding: 16,
+                    yPadding: 12,
+                    displayColors: false,
+                    titleFontFamily: 'Ubuntu',
+                    titleFontSize: 14,
+                    titleFontColor: 'rgba(0, 0, 0, 0.6)',
+                    titleFontStyle: 'normal',
+                    bodyFontFamily: 'Ubuntu',
+                    bodyFontSize: 14,
+                    bodyFontColor: 'rgba(0, 0, 0, 0.9)',
+                    bodyFontStyle: 'bold',
+                    callbacks: {
+                        label: function(data) {
+                            return data.value.slice(0, -3) + ' тыс руб'
+                        },
+                    },
                 }
             },
             show_table_settings_collumns: false,

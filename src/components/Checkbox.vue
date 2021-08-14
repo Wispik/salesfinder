@@ -102,12 +102,12 @@ export default {
     }
 
     .custom-checkbox > svg {
-      margin-right: 8px;
       width: 16px;
       height: 16px;
     }
 
     .custom-checkbox > span {
       max-width: calc(100% - 24px);
+      margin-left: 8px;
     }
 </style>

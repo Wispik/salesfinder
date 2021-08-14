@@ -152,7 +152,7 @@ export default {
     $default-color: rgba(0, 0, 0, 0.9);
     $primary-color: #316D92;
     $border-color: #D9D9D9;
-    $calendar-in-range-background-color: #ffffff;
+    // $calendar-in-range-background-color: #ffffff;
     $calendar-hover-background-color: #ffffff;
     
     @import "~vue2-datepicker/scss/index.scss";

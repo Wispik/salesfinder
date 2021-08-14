@@ -40,7 +40,26 @@
                 :key="h.id"
                 v-show="h.show"
               >
-                {{ item[h.name] }}              
+                <div 
+                  class="cat-table__td-cell"
+                  :class="{'align-right': isNum(item[h.name])}"
+                >
+                  <div 
+                    class="cat-table__td-title-image"
+                    v-if="h.name=='title' && item.image"
+                  >
+                   <img :src="item.image">
+                  </div>
+                  <div 
+                    class="cat-table__td-title-text"
+                    v-if="h.name=='title' && item.image"
+                  >
+                    {{ item[h.name] }} 
+                  </div>
+                  <template v-else>
+                    {{ item[h.name] }}
+                  </template>              
+                </div>
               </td>
             </tr>
           </tbody>
@@ -130,6 +149,10 @@ export default {
       if (this.sortedBy == col) this.sortedAsc = !this.sortedAsc
       else this.sortedAsc = true
       this.sortedBy = col
+      this.page = 1
+    },
+    isNum(i) {
+      return typeof i === 'number' || i.slice(-1) === '₽'
     }
   },
   computed: {
@@ -330,7 +353,7 @@ export default {
   }
 
   .cat-table__td-w50 {
-    padding-left: 15px;
+    padding-left: 13px !important;
     width: 50px;
   }
 
@@ -341,5 +364,33 @@ export default {
 
   .cat-table__sorted-arrow.sorted-desc {
     transform: rotate(180deg);
+  }
+
+  .cat-table__td-cell {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  .cat-table__td-cell.align-right {
+    justify-content: flex-end;
+  }
+
+  .cat-table__td-title-image {
+    width: 32px;
+    height: 32px;
+    border-radius: 100%;
+    margin-right: 8px;
+
+    & > img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 100%;
+    }
+  }
+
+  .cat-table__td-title-text {
+    width: 85%;
   }
 </style>

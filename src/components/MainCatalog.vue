@@ -228,7 +228,7 @@ export default {
 
     .catalog-item-popup {
         position: absolute;
-        width: 258px;
+        width: 400px;
         height: 312px;
         left: -8px;
         top: -17px;
