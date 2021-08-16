@@ -33,12 +33,13 @@ export default {
                 "fiolet": {color: '#715D9A'} 
             },
             chartData: {
-                labels: ["1", "2", "3", "4", "5"],
+                labels: ["1", "2", "3", "4", "5", "6", "7"],
                 datasets: [
                     {
-                        borderColor: 'rgba(0, 0, 0, 0.15)',
+                        borderColor: 'rgba(0, 0, 0, 0.3)',
+                        borderWidth: 2,
                         pointBorderColor: 'transparent',
-                        data: [10, 80, 30, 50, 0]
+                        data: [0, 80, 50, 70, 40, 20, 0]
                     }
                 ]
             },
@@ -66,6 +67,11 @@ export default {
                 },
                 tooltips: {
                     enabled: false
+                },
+                layout: {
+                    padding: {
+                        top: 8
+                    }
                 }
             }
         }
@@ -73,21 +79,27 @@ export default {
     components: {
         LineChart
     },
-    // mounted() {
-    //     this.chartData.datasets[0].borderColor = this.colors[this.color]
-    // }
-    // created() {
-    //     this.chartData = {
-    //             labels: ["1", "2", "3", "4", "5"],
-    //             datasets: [
-    //                 {
-    //                     borderColor: this.colors[this.color],
-    //                     pointBorderColor: 'transparent',
-    //                     data: [10, 80, 30, 50, 0]
-    //                 }
-    //             ]
-    //         }
-    // }
+    mounted() {
+        let data = []
+        data.push(0)
+        for ( let i = 0; i < 6; i++ ) {
+            data.push( Math.round( Math.random() * 1000 ));
+        }
+        data.push(10)
+
+        this.chartData =  {
+                labels: ["1", "2", "3", "4", "5", "6", "7"],
+                datasets: [
+                    {
+                        borderColor: this.colors[this.color].color,
+                        borderWidth: 2,
+                        pointBorderColor: 'transparent',
+                        pointRadius: 0,
+                        data: [...data]
+                    }
+                ]
+            }
+    }
 }
 </script>
 

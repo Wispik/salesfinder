@@ -52,6 +52,7 @@
             v-if="tabs_charts_active == tabs_charts[1]" 
             :chartData="chartData" 
             :options="chartOptions"
+            :height="350"
           />
       </div>
       <div class="main-title">
@@ -86,7 +87,7 @@
             </button>
         </app-tabs>
       </div>
-      <div class="cat-infa__tables">
+      <div class="cat-info__tables">
           <category-table 
             :config="table_products_data"
           />
@@ -273,6 +274,26 @@ export default {
         });
         this.table_products_data = category_table_product
         this.table_products_data.data = data
+
+        // генерируем данные для графика
+        const rand = () => Math.floor(Math.random( ) * (900 - 100 + 1)) + 100
+        let labels = []
+        let arr_data = []
+        for (let i = 1; i < 31; i++) {
+            labels.push(`${i}.08.2021`)
+            arr_data.push(rand() * 1000)
+        }
+        this.chartData= {
+                labels: [...labels],
+                datasets: [
+                {
+                    borderColor: "#FAAB31",
+                    pointBackgroundColor: "#FAAB31",
+                    pointBorderColor: "#FFFFFF",
+                    data: [...arr_data]
+                }
+                ]
+            }
     },
     computed: {
         selectedItems() {
@@ -306,7 +327,7 @@ export default {
 
 <style lang="scss">
     .cat-info {
-        width: 100%;
+        width: calc(100vw - 200px);;
         padding: 30px 24px;
         display: flex;
         flex-flow: column nowrap;
@@ -335,7 +356,7 @@ export default {
         margin-bottom: 48px;
     }
 
-    .cat-infa__tables {
+    .cat-info__tables {
         margin-top: 32px;
     }
 

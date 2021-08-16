@@ -944,7 +944,7 @@ const category_table_product = {
             position: 1,
             show: true,
             name: 'title',
-            width: 300
+            width: 380
         },
         {
             id: 2,
@@ -952,7 +952,7 @@ const category_table_product = {
             position: 2,
             show: true,
             name: 'topic',
-            width: 300
+            width: 380
         },
         {
             id: 19,

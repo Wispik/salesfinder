@@ -6,7 +6,7 @@
             <tr class="cat-table__thead">
               <td class="cat-table__thead-th" width="50">
                 <div class="cat-table__thead-th-cell">
-                  <checkbox v-model="select_all" />
+                  <checkbox v-model="select_all" rounded/>
                 </div>
               </td>
               <td 
@@ -17,7 +17,10 @@
                 :width="head.width"
                 @click.stop="setSortBy(head.name)"
               >
-                <div class="cat-table__thead-th-cell">
+                <div 
+                  class="cat-table__thead-th-cell"
+                  :class="{'cat-table__thead-th-cell-sorted': head.name == sortedBy,'align-right': isNum(actualData[0][head.name])}"  
+                >
                   {{ head.title }}
                   <img 
                     :src="require(`@/assets/images/icons/table_sort_arrow.svg`)"
@@ -33,7 +36,7 @@
               v-for="item in actualData"
               :key="item.id"
             >
-              <td class="cat-table__td-w50"><checkbox v-model="item.checked" /></td>
+              <td class="cat-table__td-w50"><checkbox v-model="item.checked" rounded/></td>
               <td 
                 
                 v-for="h in tableHead"
@@ -42,7 +45,9 @@
               >
                 <div 
                   class="cat-table__td-cell"
-                  :class="{'align-right': isNum(item[h.name])}"
+                  :class="{'align-right': isNum(item[h.name]),'cat-table__td-text-overflow': h.name=='topic','cat-table__td-link': h.name=='topic' || h.name=='brand' || h.name=='seller'
+                    }
+                  "
                 >
                   <div 
                     class="cat-table__td-title-image"
@@ -320,6 +325,7 @@ export default {
   .cat-table__thead-th {
     font-weight: 500;
     cursor: pointer;
+    transition: 0.4s;
   }
 
   .cat-table__thead-th:first-child > .cat-table__thead-th-cell{
@@ -339,6 +345,15 @@ export default {
     align-items: center;
     background: #F7F7F7;
     padding: 5px 10px;
+    transition: 0.4s;
+  }
+
+  .cat-table__thead-th-cell:hover {
+    background: darken(#F7F7F7, 10%);
+  }
+
+  .cat-table__thead-th-cell-sorted {
+    background: darken(#F7F7F7, 10%);
   }
 
   .cat-table__tr > td {
@@ -347,7 +362,6 @@ export default {
     }
 
   .table-block {
-    max-width: 1600px;
     position: relative;
     overflow-x: scroll;
   }
@@ -376,6 +390,10 @@ export default {
     justify-content: flex-end;
   }
 
+  .cat-table__thead-th-cell.align-right {
+    justify-content: flex-end;
+  }
+
   .cat-table__td-title-image {
     width: 32px;
     height: 32px;
@@ -392,5 +410,20 @@ export default {
 
   .cat-table__td-title-text {
     width: 85%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cat-table__td-text-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+
+  .cat-table__td-link {
+    cursor: pointer;
+    color: #316D92;
   }
 </style>

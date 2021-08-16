@@ -171,7 +171,7 @@ export default {
     }
 
     .table-settings__title {
-        font-family: PT Sans;
+        font-family: "Ubuntu";
         font-style: normal;
         font-weight: normal;
         font-size: 1.8rem;

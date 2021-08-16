@@ -29,6 +29,6 @@
             this.gradient.addColorStop(1, "rgba(255, 0, 0, 0)");
             this.chartData.datasets[0].backgroundColor = this.gradient
             this.renderChart(this.chartData, this.options) 
-        }
+        },
     }
 </script>
