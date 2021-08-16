@@ -9,6 +9,9 @@
         @focus="focus_search_input"
         @blur="unfocus_search_input"
         @input="change_search_input"
+        @keydown.up="select_prev_search_item"
+        @keydown.down="select_next_search_item"
+        @keyup.enter='select_search_item'
       >
       <button class="main-search-btn">
         <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -19,6 +22,7 @@
         <div class="main-search-result" v-if="show_search_results & search_results.length > 0">
           <div 
             class="main-search-resilt-item"
+            :class="{'main-search-resilt-item-selected': i == search_input_manual_selected}"
             v-for="(res, i) in search_results"
             :key="i"
             v-html="formatSearchResult(res)">
@@ -101,7 +105,8 @@ export default {
       show_btn_ratings: false,
       show_catalogs: false,
       show_search_results: false,
-      search_results: []
+      search_results: [],
+      search_input_manual_selected: -1
     }
   },
   components: {
@@ -133,8 +138,10 @@ export default {
     unfocus_search_input() {
       this.search_input_focused=false
       this.show_search_results=false
+      this.search_input_manual_selected = -1
     },
     change_search_input() {
+      this.search_input_manual_selected = -1
       if (this.search_input.length == 0) {
         this.show_search_results=false
         this.search_results = []
@@ -167,6 +174,23 @@ export default {
         let res = `${current.substring(0, pos)}<span class="blue-text">${current.substring(pos, pos+len_search)}</span>${current.substring(pos+len_search)}`
         return res
       }
+    },
+    select_prev_search_item() {
+      if (this.search_results.length > 0) {
+        this.search_input_manual_selected -= 1
+        if (this.search_input_manual_selected < 0) 
+          this.search_input_manual_selected = this.search_results.length - 1
+      }
+    },
+    select_next_search_item() {
+      if (this.search_results.length > 0) {
+        this.search_input_manual_selected += 1
+        if (this.search_input_manual_selected == this.search_results.length) 
+          this.search_input_manual_selected = 0
+      }
+    },
+    select_search_item() {
+      this.unfocus_search_input()
     }
   },
   watch: {
@@ -243,6 +267,10 @@ export default {
   }
 
   .main-search-resilt-item:hover {
+    background: darken(#ffffff, 5%);
+  }
+
+  .main-search-resilt-item-selected {
     background: darken(#ffffff, 5%);
   }
 

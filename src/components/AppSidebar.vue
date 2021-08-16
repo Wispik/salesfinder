@@ -223,6 +223,16 @@ export default {
         content: '';
         position: absolute;
         width: 100%;
+        height: 14px;
+        background: #354052;
+        top: 0px;
+        left: 0;
+    }
+
+    .sidebar__li-big > .sidebar__li-item::after {
+        content: '';
+        position: absolute;
+        width: 100%;
         height: 1px;
         background: #434E60;
         top: 7px;
@@ -233,7 +243,8 @@ export default {
         height: 52px;
     }
 
-    .sidebar__li-big:first-child > .sidebar__li-item::before {
+    .sidebar__li-big:first-child > .sidebar__li-item::before,
+    .sidebar__li-big:first-child > .sidebar__li-item::after {
         display: none;
     }
 
