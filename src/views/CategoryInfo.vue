@@ -125,6 +125,7 @@
       <table-settings-filters
         :show="show_table_settings_filters"
         @close="show_table_settings_filters=false"
+        v-model="activeTable"
       />
       <selected-table-items
         v-if="selectedItems.length > 0"
