@@ -359,6 +359,7 @@ export default {
   .cat-table__tr > td {
         border-bottom: 1px solid #F7F7F7;
         padding: 5px 10px;
+        height: 42px;
     }
 
   .table-block {

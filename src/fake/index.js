@@ -1177,4 +1177,145 @@ const category_table_product = {
     ]
 }
 
-export { main_table_data, categories, category_table_product }
+const category_brand_product = {
+    head: [
+        {
+            id: 1,
+            title: 'Бренд',
+            position: 1,
+            show: true,
+            name: 'brand'
+        },
+        {
+            id: 2,
+            title: 'Кол-во товаров',
+            position: 2,
+            show: true,
+            name: 'num_products'
+        }
+    ],
+    data: [
+        {
+            id: 1,
+            brand: 'ESTHETIC HOUSE',
+            num_products: '98',
+            checked: false
+        },
+        {
+            id: 2,
+            brand: 'ELIZAVECCA',
+            num_products: '80',
+            checked: false
+        },
+        {
+            id: 3,
+            brand: '3W Clinic',
+            num_products: '67',
+            checked: false
+        },
+        {
+            id: 4,
+            brand: 'Jigott',
+            num_products: '65',
+            checked: false
+        },
+        {
+            id: 5,
+            brand: 'J:ON',
+            num_products: '55',
+            checked: false
+        },
+        {
+            id: 6,
+            brand: 'Valmona',
+            num_products: '39',
+            checked: false
+        },
+        {
+            id: 7,
+            brand: 'PEDISON',
+            num_products: '28',
+            checked: false
+        },
+        {
+            id: 8,
+            brand: 'REALSKIN',
+            num_products: '21',
+            checked: false
+        },
+        {
+            id: 9,
+            brand: 'Dr. Althea',
+            num_products: '21',
+            checked: false
+        },
+        {
+            id: 10,
+            brand: 'NATURIA',
+            num_products: '20',
+            checked: false
+        },
+        {
+            id: 11,
+            brand: 'ENOUGH',
+            num_products: '19',
+            checked: false
+        },
+        {
+            id: 12,
+            brand: 'Fraijour',
+            num_products: '16',
+            checked: false
+        },
+        {
+            id: 13,
+            brand: 'WELLDERMA',
+            num_products: '16',
+            checked: false
+        },
+        {
+            id: 14,
+            brand: 'Petitfee',
+            num_products: '16',
+            checked: false
+        },
+        {
+            id: 15,
+            brand: 'Char Char',
+            num_products: '14',
+            checked: false
+        },
+        {
+            id: 16,
+            brand: 'Petitfee.',
+            num_products: '12',
+            checked: false
+        },
+        {
+            id: 17,
+            brand: 'FACIS',
+            num_products: '10',
+            checked: false
+        },
+        {
+            id: 18,
+            brand: 'Doris',
+            num_products: '10',
+            checked: false
+        },
+        {
+            id: 19,
+            brand: 'Koelf',
+            num_products: '7',
+            checked: false
+        },
+        {
+            id: 20,
+            brand: 'LION',
+            num_products: '6',
+            checked: false
+        },
+    ]
+}
+
+export { main_table_data, categories, category_table_product, category_brand_product }

@@ -103,7 +103,10 @@ export default {
             else document.body.style.overflow = "auto";
         },
         modelValue(newVal) {
-            this.tableData = JSON.parse(JSON.stringify(newVal))
+            if (newVal)
+                this.tableData = JSON.parse(JSON.stringify(newVal))
+            else
+                this.tableData = []
         }
     },
     components: {
@@ -155,6 +158,7 @@ export default {
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: center;
+        z-index: 100;
     }
 
     .table-settings__header-btn-close {

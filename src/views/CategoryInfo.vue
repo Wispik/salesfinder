@@ -89,13 +89,14 @@
       </div>
       <div class="cat-info__tables">
           <category-table 
-            :config="table_products_data"
+            :config="activeTable"
+            v-if="activeTable.data"
           />
       </div>
       <table-settings-collumns 
         :show="show_table_settings_collumns" 
         @close="show_table_settings_collumns=false"
-        v-model="table_products_data.head"
+        v-model="activeTable.head"
       />
       <table-settings-filters
         :show="show_table_settings_filters"
@@ -121,7 +122,7 @@ import TableSettingsFilters from '@/components/TableSettingsFilters.vue'
 import TableSettingsCollumns from '@/components/TableSettingsCollumns.vue'
 import SelectedTableItems from '@/components/SelectedTableItems.vue'
 
-import { category_table_product } from '@/fake'
+import { category_table_product, category_brand_product } from '@/fake'
 
 export default {
     data() {
@@ -182,7 +183,10 @@ export default {
                     title: 'Подкатегории'
                 },
             ],
-            tabs_tables_model: null,
+            tabs_tables_model: {
+                                id: 1,
+                                title: 'Товары'
+                            },
             chartData: {
                 labels: [
                 '01.10.2021',
@@ -252,12 +256,29 @@ export default {
             },
             show_table_settings_collumns: false,
             show_table_settings_filters: false,
-            table_products_data: {}
+            tables_data: [
+                {
+                    id: 1,
+                    table_data: {}
+                },
+                {
+                    id: 2,
+                    table_data: {}
+                },
+                {
+                    id: 3,
+                    table_data: {}
+                },
+                {
+                    id: 4,
+                    table_data: {}
+                }
+            ],
         }
     },
     methods: {
         deselect() {
-            this.table_products_data.data.forEach(el => {
+            this.activeTable.data.forEach(el => {
                 el.checked = false
             })
             this.select_all = false
@@ -272,8 +293,10 @@ export default {
         data.forEach((el, index) => {
             el.id = index
         });
-        this.table_products_data = category_table_product
-        this.table_products_data.data = data
+        this.tables_data[0].table_data = category_table_product
+        this.tables_data[0].table_data.data = data
+
+        this.tables_data[1].table_data = category_brand_product
 
         // генерируем данные для графика
         const rand = () => Math.floor(Math.random( ) * (900 - 100 + 1)) + 100
@@ -288,6 +311,7 @@ export default {
                 datasets: [
                 {
                     borderColor: "#FAAB31",
+                    borderWidth: 2,
                     pointBackgroundColor: "#FAAB31",
                     pointBorderColor: "#FFFFFF",
                     data: [...arr_data]
@@ -296,10 +320,14 @@ export default {
             }
     },
     computed: {
+        activeTable() {
+            let t = this.tables_data.find(item => item.id == this.tabs_tables_model.id)
+            return t ? t.table_data: null
+        },
         selectedItems() {
-            if (this.table_products_data && this.table_products_data.data) {
+            if (this.activeTable && this.activeTable.data) {
                 let res = []
-                this.table_products_data.data.forEach(el => {
+                this.activeTable.data.forEach(el => {
                     if (el.checked) res.push(el)
                 })
                 return res
