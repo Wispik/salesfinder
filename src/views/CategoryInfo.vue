@@ -22,7 +22,11 @@
             </fade-transition>
         </app-tabs>
       </div>
-      <div class="cat-info__cells" v-if="tabs_charts_active == tabs_charts[0]">
+      <vue-custom-scrollbar 
+        class="cat-info__cells" 
+        v-if="tabs_charts_active == tabs_charts[0]"
+        :settings="scrollSettings"    
+    >
           <cell-info 
             title="Продажи"
             info="1 385 "
@@ -46,7 +50,27 @@
             info="287"
             color="fiolet"
           />
-      </div>
+          <cell-info 
+            title="Продавцов"
+            info="287"
+            color="green"
+          />
+          <cell-info 
+            title="Продавцов"
+            info="287"
+            color="orange"
+          />
+          <cell-info 
+            title="Продавцов"
+            info="287"
+            color="darkblue"
+          />
+          <cell-info 
+            title="Продавцов"
+            info="287"
+            color="pink"
+          />
+      </vue-custom-scrollbar>
       <div class="cat-info__chart">
           <line-chart 
             v-if="tabs_charts_active == tabs_charts[1]" 
@@ -274,6 +298,11 @@ export default {
                     table_data: {}
                 }
             ],
+            scrollSettings: {
+                suppressScrollX: false,
+                suppressScrollY: true,
+                wheelPropagation: false
+            }
         }
     },
     methods: {

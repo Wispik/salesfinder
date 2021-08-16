@@ -30,7 +30,11 @@ export default {
                 "red": {color: '#E0A1B5'}, 
                 "blue": {color: '#6D8A9F'}, 
                 "yellow": {color: '#FFA83F'}, 
-                "fiolet": {color: '#715D9A'} 
+                "fiolet": {color: '#715D9A'},
+                "green": {color: '#5D9A8F'},
+                "pink": {color: '#AC5E96'},
+                "orange": {color: '#F98757'},
+                "darkblue": {color: '#215063'}
             },
             chartData: {
                 labels: ["1", "2", "3", "4", "5", "6", "7"],
@@ -175,5 +179,37 @@ export default {
 
     .cell.fiolet > .cell__title {
         color: #4B3A70;
+    }
+
+    .cell.green {
+        background: linear-gradient(0deg, rgba(93, 154, 143, 0.16), rgba(93, 154, 143, 0.16)), #FFFFFF;
+    }
+
+    .cell.green > .cell__title {
+        color: #37685F;
+    }
+
+    .cell.pink {
+        background: linear-gradient(0deg, rgba(172, 94, 150, 0.16), rgba(172, 94, 150, 0.16)), #FFFFFF;
+    }
+
+    .cell.pink > .cell__title {
+        color: #5E2E50;
+    }
+
+    .cell.orange {
+        background: rgba(249, 135, 87, 0.16);
+    }
+
+    .cell.orange > .cell__title {
+        color: #a25433;
+    }
+
+    .cell.darkblue {
+        background: rgba(33, 80, 99, 0.16);;
+    }
+
+    .cell.darkblue > .cell__title {
+        color: #215063;
     }
 </style>
