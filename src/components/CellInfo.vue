@@ -126,6 +126,7 @@ export default {
         line-height: 2.4rem;
         letter-spacing: 0.05em;
         text-transform: uppercase;
+        white-space: nowrap;
     }
 
     .cell__info {

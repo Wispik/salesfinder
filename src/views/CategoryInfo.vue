@@ -51,22 +51,22 @@
             color="fiolet"
           />
           <cell-info 
-            title="Продавцов"
+            title="Брендов"
             info="287"
             color="green"
           />
           <cell-info 
-            title="Продавцов"
+            title="Выручка на товар"
             info="287"
             color="orange"
           />
           <cell-info 
-            title="Продавцов"
+            title="Выручка в день"
             info="287"
             color="darkblue"
           />
           <cell-info 
-            title="Продавцов"
+            title="Продаж в день"
             info="287"
             color="pink"
           />
@@ -187,6 +187,18 @@ export default {
                 {
                     id: 5,
                     title: 'Продажи (шт.)'
+                },
+                {
+                    id: 6,
+                    title: 'Выручка на товар'
+                },
+                {
+                    id: 7,
+                    title: 'Выручка в день'
+                },
+                {
+                    id: 8,
+                    title: 'Продаж в день'
                 }
             ],
             select_chart_model: null,

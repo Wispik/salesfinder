@@ -335,4 +335,20 @@ export default {
   .blue-text {
     color: #316D92;
   }
+
+  .ps__rail-x {
+    height: 10px !important;
+  }
+
+  .ps__rail-x.ps--clicking .ps__thumb-x, .ps__rail-x:focus>.ps__thumb-x, .ps__rail-x:hover>.ps__thumb-x {
+    height: 6px !important;
+  }
+
+  .ps__rail-y {
+    width: 10px !important;
+  }
+
+.ps__rail-y.ps--clicking .ps__thumb-y, .ps__rail-y:focus>.ps__thumb-y, .ps__rail-y:hover>.ps__thumb-y  {
+    width: 6px !important;
+  }
 </style>

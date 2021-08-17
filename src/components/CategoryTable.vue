@@ -349,11 +349,11 @@ export default {
   }
 
   .cat-table__thead-th-cell:hover {
-    background: darken(#F7F7F7, 10%);
+    background: darken(#F7F7F7, 5%);
   }
 
   .cat-table__thead-th-cell-sorted {
-    background: darken(#F7F7F7, 10%);
+    background: darken(#F7F7F7, 5%);
   }
 
   .cat-table__tr > td {
