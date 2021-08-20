@@ -1210,7 +1210,7 @@ const category_brand_product = {
             position: 1,
             show: true,
             name: 'brand',
-            width: 300
+            width: 440
         },
         {
             id: 2,

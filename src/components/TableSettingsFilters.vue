@@ -35,12 +35,44 @@
                                     class="table-settings__filters-item-range-block"
                                     v-show="item.type == 'range'"    
                                 >
-                                    <vue-range-slider 
+                                    <div class="table-settings__filters-item-range-block-top">
+                                        <div class="table-settings__filters-item-range-block-top-item">
+                                            <span>От</span>
+                                            <input 
+                                                type="text"
+                                                v-model="item.model[0]"
+                                                :placeholder="item.model[0]"
+                                            >
+                                        </div>
+                                        <div class="table-settings__filters-item-range-block-top-item">
+                                            <span>До</span>
+                                            <input 
+                                                type="text"
+                                                v-model="item.model[1]"
+                                                :placeholder="item.model[1]" 
+                                            >
+                                        </div>
+                                    </div>
+
+                                    <vue-slider
+                                        v-model="item.model"
+                                        :enable-cross="false"
                                         :min="0"
                                         :max="100000"
-                                        :value="item.model"
-                                    />
+                                        :interval="500"
+                                    >
+                                        <template v-slot:dot>
+                                            <div class="custom-dot-slider"></div>
+                                        </template>
+                                        <template v-slot:tooltip="{ value }">
+                                            <div class="custom-tooltip-slider">{{ value }}</div>
+                                        </template>
+                                    </vue-slider>
                                 </div>
+                                <filters-select 
+                                    v-model="item.model"
+                                    v-show="item.type == 'select'"
+                                />
                             </div>
                         </div>
                         <div class="table-settings__input-save">
@@ -64,9 +96,10 @@
 <script>
 import { SlideXRightTransition } from 'vue2-transitions'
 import AppSelect from '@/components/AppSelect.vue';
+import FiltersSelect from '@/components/FiltersSelect.vue';
 
-import 'vue-range-component/dist/vue-range-slider.css'
-import VueRangeSlider from 'vue-range-component'
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
 
 export default {
     model: {
@@ -113,7 +146,34 @@ export default {
             for (let i = 0; i < this.modelValue.head.length; i++) {
                 let el = this.modelValue.head[i]
                 if (el.name == 'warehouse') {
-                    console.log(1)
+                    this.filterItems.push({
+                        id: this.filterItems.length,
+                        title: el.title,
+                        name: el.name,
+                        type: 'select',
+                        model: [
+                            {
+                                id: 1,
+                                title: 'Склад продавца',
+                                selected: true
+                            },
+                            {
+                                id: 2,
+                                title: 'Коледино WB',
+                                selected: true
+                            },
+                            {
+                                id: 3,
+                                title: 'Санкт-Петербург WB',
+                                selected: true
+                            },
+                            {
+                                id: 4,
+                                title: 'Электросталь WB',
+                                selected: true
+                            }
+                        ]
+                    })
                 }
                 else
                 {
@@ -123,7 +183,7 @@ export default {
                             title: el.title,
                             name: el.name,
                             type: 'range',
-                            model: ['0','100000']
+                            model: [0, 100000]
                         })
                     }
                     else
@@ -158,7 +218,8 @@ export default {
     components: {
         SlideXRightTransition,
         AppSelect,
-        VueRangeSlider
+        VueSlider,
+        FiltersSelect
     }
 }
 </script>
@@ -233,5 +294,57 @@ export default {
     .table-settings__filters-drag-block {
         height: 100%;
         flex: 1;
+    }
+
+    .table-settings__filters-item-range-block {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .table-settings__filters-item-range-block-top {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .table-settings__filters-item-range-block-top-item {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        font-weight: 500;
+        font-size: 1.4rem;
+        gap: 6px;
+
+        & > input {
+            width: 100%;
+            height: 38px;
+            border: 1px solid #D9D9D9;
+            border-radius: 4px;
+            padding: 8px 12px;
+        }
+    }
+
+    .custom-dot-slider {
+        width: 14px;
+        height: 14px;
+        background: #ffffff;
+        border: 2px solid #316D92;
+        border-radius: 100px;
+    }
+
+    .custom-tooltip-slider {
+        background: #ffffff;
+        font-size: 1.2rem;
+    }
+
+    .vue-slider-process {
+        background: #316D92 !important;
+    }
+
+    .vue-slider-dot-tooltip-top {
+        top: 30px !important;
     }
 </style>

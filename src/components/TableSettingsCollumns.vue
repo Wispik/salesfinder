@@ -82,7 +82,6 @@ export default {
             this.tableData.forEach((el, index) => {
                 el.position = index
             })
-            console.log(this.tableData)
             this.$emit('change', this.tableData)
             this.close()
         }
@@ -185,6 +184,8 @@ export default {
 
     .table-settings__columns-drag-block {
         margin: 24px 0;
+        margin-right: -24px;
+        padding-right: 24px;
     }
 
     .table-settings__columns-drag-item {
