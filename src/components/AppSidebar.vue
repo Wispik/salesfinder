@@ -19,7 +19,7 @@
                     :to=item.route
                     class="sidebar__li-item sidebar__li-item-link"
                     tag="div"
-                    exact
+                    
                 >
                     <img :src="require(`@/assets/images/sidebar/${item.icon}`)" v-if="item.icon">
                     <span>
