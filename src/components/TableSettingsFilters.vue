@@ -54,7 +54,7 @@
                                         </div>
                                     </div>
 
-                                    <vue-slider
+                                    <!-- <vue-slider
                                         v-model="item.model"
                                         :enable-cross="false"
                                         :min="0"
@@ -68,7 +68,7 @@
                                         <template v-slot:tooltip="{ value }">
                                             <div class="custom-tooltip-slider">{{ value }}</div>
                                         </template>
-                                    </vue-slider>
+                                    </vue-slider> -->
                                 </div>
                                 <filters-select 
                                     v-model="item.model"
@@ -99,8 +99,8 @@ import { SlideXRightTransition } from 'vue2-transitions'
 import AppSelect from '@/components/AppSelect.vue';
 import FiltersSelect from '@/components/FiltersSelect.vue';
 
-import VueSlider from 'vue-slider-component'
-import 'vue-slider-component/theme/default.css'
+// import VueSlider from 'vue-slider-component'
+// import 'vue-slider-component/theme/default.css'
 
 export default {
     model: {
@@ -227,7 +227,7 @@ export default {
     components: {
         SlideXRightTransition,
         AppSelect,
-        VueSlider,
+        // VueSlider,
         FiltersSelect
     }
 }
