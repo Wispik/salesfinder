@@ -84,6 +84,9 @@
                                 </svg>
                             </div>
                         </div>
+                        <div class="table-settings__label-confirm" v-if="show_confirm_label">
+                            Фильтр успешно сохранен
+                        </div>
                     </vue-custom-scrollbar>
                     <div class="table-settings__footer">
                         <button class="btn-outline" @click.stop="reset">Сбросить</button>
@@ -131,7 +134,8 @@ export default {
                 wheelPropagation: false
             },
             tableData: [],
-            filterItems: []
+            filterItems: [],
+            show_confirm_label: false
         }
     },
     methods: {
@@ -139,7 +143,7 @@ export default {
             this.$emit('close')
         },
         saveFilter() {
-
+            this.show_confirm_label = true
         },
         reset() {
             this.tableData = JSON.parse(JSON.stringify(this.modelValue))
@@ -369,5 +373,17 @@ export default {
 
     .table-settings__filters-item-title {
         font-weight: 500;
+    }
+
+    .table-settings__label-confirm {
+        font-family: 'Ubuntu';
+        font-style: normal;
+        font-weight: normal;
+        font-size: 1.4rem;
+        line-height: 1.6rem;
+        color: green;
+        padding: 0 24px 24px 24px;
+        margin-top: -12px;
+        transition: 0.4s;
     }
 </style>
