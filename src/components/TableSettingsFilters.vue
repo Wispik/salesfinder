@@ -287,7 +287,7 @@ export default {
         font-family: 'Ubuntu';
         font-style: normal;
         font-weight: normal;
-        font-size: 1.2rem;
+        font-size: 1.4rem;
         line-height: 1.6rem;
         color: #333333;
     }
