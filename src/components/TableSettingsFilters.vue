@@ -368,6 +368,6 @@ export default {
     }
 
     .table-settings__filters-item-title {
-        font-weight: 600;
+        font-weight: 500;
     }
 </style>
