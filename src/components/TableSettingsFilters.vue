@@ -60,6 +60,7 @@
                                         :min="0"
                                         :max="100000"
                                         :interval="500"
+                                        silent
                                     >
                                         <template v-slot:dot>
                                             <div class="custom-dot-slider"></div>
@@ -85,8 +86,8 @@
                         </div>
                     </vue-custom-scrollbar>
                     <div class="table-settings__footer">
-                        <button class="btn-outline">Сбросить</button>
-                        <button class="btn-blue">Применить</button>
+                        <button class="btn-outline" @click.stop="reset">Сбросить</button>
+                        <button class="btn-blue" @click.stop="apply">Применить</button>
                     </div>
                 </div>
         </div>
@@ -120,7 +121,7 @@ export default {
             filters_select: [
                 {
                     id: 1,
-                    title: 'Мои фильтры'
+                    title: 'Нет сохраненных фильтров'
                 }
             ],
             filters_model: null,
@@ -139,6 +140,14 @@ export default {
         },
         saveFilter() {
 
+        },
+        reset() {
+            this.tableData = JSON.parse(JSON.stringify(this.modelValue))
+            this.generate()
+        },
+        apply() {
+            this.$emit('change', this.tableData)
+            this.close()
         },
         generate() {
             const isNum = (item) => typeof item === 'number' || item.slice(-1) === '₽'
@@ -289,6 +298,11 @@ export default {
         border-radius: 4px;
         padding: 8px 12px;
         font-size: 1.4rem;
+        transition: 0.4s;
+
+        &:focus {
+            box-shadow: 0px 0px 16px rgba(61, 119, 167, 0.73);
+        }
     }
 
     .table-settings__filters-drag-block {
@@ -324,6 +338,11 @@ export default {
             border: 1px solid #D9D9D9;
             border-radius: 4px;
             padding: 8px 12px;
+            transition: 0.4s;
+
+            &:focus {
+                box-shadow: 0px 0px 16px rgba(61, 119, 167, 0.73);
+            }   
         }
     }
 
@@ -346,5 +365,9 @@ export default {
 
     .vue-slider-dot-tooltip-top {
         top: 30px !important;
+    }
+
+    .table-settings__filters-item-title {
+        font-weight: 600;
     }
 </style>

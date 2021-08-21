@@ -13,7 +13,7 @@
       <slide-y-up-transition>
         <div class="filters-select__popup" v-if="isOpen" v-click-outside="closeSelect">
             <div class="filters-select__search">
-                <input type="text" v-model="search" placeholder="Поиск по категориям">
+                <input type="text" v-model="search" placeholder="Поиск">
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12.25 12.25L9.625 9.625M10.5 6.125C10.5 8.54125 8.54125 10.5 6.125 10.5C3.70875 10.5 1.75 8.54125 1.75 6.125C1.75 3.70875 3.70875 1.75 6.125 1.75C8.54125 1.75 10.5 3.70875 10.5 6.125Z" stroke="#333333" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
