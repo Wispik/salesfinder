@@ -301,7 +301,7 @@ export default {
         transition: 0.4s;
 
         &:focus {
-            box-shadow: 0px 0px 16px rgba(61, 119, 167, 0.73);
+            border: 1px solid #316D92;
         }
     }
 
@@ -341,7 +341,7 @@ export default {
             transition: 0.4s;
 
             &:focus {
-                box-shadow: 0px 0px 16px rgba(61, 119, 167, 0.73);
+                border: 1px solid #316D92;
             }   
         }
     }
