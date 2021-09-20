@@ -397,7 +397,7 @@ export default {
 
 <style lang="scss">
     .cat-info {
-        width: calc(100vw - 200px);;
+        width: calc(100vw - 200px);
         padding: 30px 24px;
         display: flex;
         flex-flow: column nowrap;

@@ -32,7 +32,7 @@
       </slide-y-up-transition>
     </div>
     <main-catalog v-if="show_catalogs" />
-    <router-link class="btn-blue btn-analize" :to="{name: 'CategoryInfo'}" tag="button">
+    <router-link class="btn-blue btn-analize" :to="{name: 'CategoryInfov2'}" tag="button">
       Анализировать
     </router-link>
     <h1 class="main-title mt64">
@@ -299,6 +299,18 @@ export default {
 
   .main-title.mt64 {
     margin-top: 64px;
+  }
+
+  .second-title {
+    font-family: Ubuntu;
+    font-weight: 300;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    color: rgba(0, 0, 0, 0.65);
+  }
+
+  .second-title.mt8 {
+    margin-top: 8px;
   }
 
   .btn-outline {

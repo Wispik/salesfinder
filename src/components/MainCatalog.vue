@@ -22,13 +22,141 @@
 <script>
 import TreeView from '@/components/TreeView.vue'
 import {FadeTransition} from 'vue2-transitions'
-import api from '@/api'
+import {categories} from '@/fake'
+// import api from '@/api'
 
 export default {
     data() {
         return {
-            catalog_items: [],
-            categories: []
+            catalog_items: [
+                {
+                    c_id: 1,
+                    icon: 'woman',
+                    c_name: 'Женщинам',
+                    show_popup: false
+                },
+                {
+                    c_id: 2,
+                    icon: 'byt',
+                    c_name: 'Бытовая техника',
+                    show_popup: false
+                },
+                {
+                    c_id: 3,
+                    icon: 'repair',
+                    c_name: 'Для ремонта',
+                    show_popup: false
+                },
+                {
+                    c_id: 4,
+                    icon: 'man',
+                    c_name: 'Мужчинам',
+                    show_popup: false
+                },
+                {
+                    c_id: 5,
+                    icon: 'sport',
+                    c_name: 'Спорт',
+                    show_popup: false
+                },
+                {
+                    c_id: 6,
+                    icon: 'home',
+                    c_name: 'Дом',
+                    show_popup: false
+                },
+                {
+                    c_id: 7,
+                    icon: 'child',
+                    c_name: 'Детям',
+                    show_popup: false
+                },
+                {
+                    c_id: 8,
+                    icon: 'beauty',
+                    c_name: 'Красота',
+                    show_popup: false
+                },
+                {
+                    c_id: 9,
+                    icon: 'auto',
+                    c_name: 'Автотовары',
+                    show_popup: false
+                },
+                {
+                    c_id: 10,
+                    icon: 'child-e',
+                    c_name: 'Детская электроника',
+                    show_popup: false
+                },
+                {
+                    c_id: 11,
+                    icon: 'toys',
+                    c_name: 'Игрушки',
+                    show_popup: false
+                },
+                {
+                    c_id: 12,
+                    icon: 'jewelry',
+                    c_name: 'Ювелирные изделия',
+                    show_popup: false
+                },
+                {
+                    c_id: 13,
+                    icon: 'boots',
+                    c_name: 'Обувь',
+                    show_popup: false
+                },
+                {
+                    c_id: 14,
+                    icon: 'food',
+                    c_name: 'Продукты',
+                    show_popup: false
+                },
+                {
+                    c_id: 15,
+                    icon: '18',
+                    c_name: 'Товары для взрослых',
+                    show_popup: false
+                },
+                {
+                    c_id: 16,
+                    icon: 'acs',
+                    c_name: 'Аксессуары',
+                    show_popup: false
+                },
+                {
+                    c_id: 17,
+                    icon: 'zoo',
+                    c_name: 'Зоотовары',
+                    show_popup: false
+                },
+                {
+                    c_id: 18,
+                    icon: 'pen',
+                    c_name: 'Канцтовары',
+                    show_popup: false
+                },
+                {
+                    c_id: 19,
+                    icon: 'el',
+                    c_name: 'Электроника',
+                    show_popup: false
+                },
+                {
+                    c_id: 20,
+                    icon: 'health',
+                    c_name: 'Здоровье',
+                    show_popup: false
+                },
+                {
+                    c_id: 21,
+                    icon: 'premium',
+                    c_name: 'Premium',
+                    show_popup: false
+                }
+            ],
+            categories: categories
         }
     },
     components: {
@@ -60,20 +188,19 @@ export default {
         }
     },
     async mounted() {
-        let data = await api.getCategories(0)
+        // let data = await api.getCategories(0)
         
-        this.catalog_items = data.data.map(item => ({
-            ...item,
-            show_popup: false
-        }))
+        // this.catalog_items = data.data.map(item => ({
+        //     ...item,
+        //     show_popup: false
+        // }))
 
-        this.categories = this.catalog_items.map(item => ({
-            ...item,
-            checked: false,
-            show: true
-        }))
+        // this.categories = this.catalog_items.map(item => ({
+        //     ...item,
+        //     checked: false,
+        //     show: true
+        // }))
 
-        console.log(this.categories)
     }
 }
 </script>

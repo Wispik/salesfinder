@@ -118,6 +118,18 @@ export default {
 <style lang="scss">  
     .range-calendar {
         position: relative;
+        width: 180px;
+        height: 34px;
+    }
+
+    .range-calendar__btn {
+        width: 100%;
+        height: 34px;
+    }
+
+    .btn-calendar {
+        width: 100%;
+        height: 34px !important;
     }
 
     .range-calendar__popup {

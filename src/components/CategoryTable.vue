@@ -4,7 +4,7 @@
         <table class="cat-table__table">
           <tbody>
             <tr class="cat-table__thead">
-              <td class="cat-table__thead-th" width="50">
+              <td class="cat-table__thead-th" width="50" v-if="checked">
                 <div class="cat-table__thead-th-cell">
                   <checkbox v-model="select_all" rounded/>
                 </div>
@@ -36,7 +36,9 @@
               v-for="item in actualData"
               :key="item.id"
             >
-              <td class="cat-table__td-w50"><checkbox v-model="item.checked" rounded/></td>
+              <td class="cat-table__td-w50" v-if="checked">
+                <checkbox v-model="item.checked" rounded/>
+              </td>
               <td 
                 
                 v-for="h in tableHead"
@@ -117,7 +119,14 @@ import AppSelect from '@/components/AppSelect.vue';
 import Checkbox from '@/components/Checkbox.vue';
 
 export default {
-  props: ['config'],
+  props: {
+    config: {
+      required: true
+    },
+    checked: {
+      default: true
+    }
+  },
   data() {
     return {
       scrollSettings: {
@@ -157,7 +166,7 @@ export default {
       this.page = 1
     },
     isNum(i) {
-      return typeof i === 'number' || i.slice(-1) === '₽'
+      return typeof i === 'number' || i.slice(-1) === '₽' 
     }
   },
   computed: {

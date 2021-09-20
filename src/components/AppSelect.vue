@@ -6,7 +6,7 @@
         :style="{width: `${width}px`}"
         @click.stop="toggleSelect"
       >
-          {{ selectedItem.title }}
+          {{ checked ? title : selectedItem.title }}
           <svg class="select-arrow" :class="{'select-arrow-mini': mini}" width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M10.293 0.439453L5.99997 4.73245L1.70697 0.439453L0.292969 1.85345L5.99997 7.56045L11.707 1.85345L10.293 0.439453Z" fill="black"/>
           </svg>
@@ -18,9 +18,23 @@
                 :key="i.id"
                 class="select__item"
                 :class="{'select__item-active': selectedItem==i}"
-                @click="selectItem(i)"
+                @click.stop="selectItem(i)"
+                v-show="!checked"
             >
                 {{ i.title }}
+            </div>
+            <div 
+                v-for="i in items"
+                :key="`cb${i.id}`"
+                class="select__item"
+                @click.stop="checkItem"
+                v-show="checked"
+            >
+                <checkbox 
+                    v-model="i.checked"
+                    :title="i.title"
+                    :color="i.color"
+                />
             </div>
         </div>
       </slide-y-up-transition>
@@ -29,6 +43,7 @@
 
 <script>
 import { SlideYUpTransition } from 'vue2-transitions'
+import Checkbox from '@/components/Checkbox.vue'
 
 export default {
     model: {
@@ -55,6 +70,16 @@ export default {
         },
         width: {
             default: 200
+        },
+        checked: {
+            required: false,
+            default: false,
+            type: Boolean
+        },
+        title: {
+            required: false,
+            default: '',
+            type: String
         }
     },
     data() {
@@ -67,10 +92,13 @@ export default {
             if (this.modelValue instanceof Object) {
                 return this.modelValue
             }
-            return this.items[0]
+            return this.items.find(item => item.id == this.default)
         }
     },
     methods: {
+        checkItem() {
+            this.$emit('select', this.items)
+        },
         selectItem(item) {
             this.$emit('select', item)
             this.closeSelect()
@@ -86,7 +114,8 @@ export default {
         }
     },
     components: {
-        SlideYUpTransition
+        SlideYUpTransition,
+        Checkbox
     }
 }
 </script>
@@ -94,7 +123,7 @@ export default {
 <style lang="scss" scoped>
     .select {
         position: relative;
-        height: 32px;
+        // height: 32px;
         font-family: Ubuntu;
         font-style: normal;
         font-weight: 500;

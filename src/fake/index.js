@@ -1541,4 +1541,151 @@ const category_brand_product = {
     ]
 }
 
-export { main_table_data, categories, category_table_product, category_brand_product }
+const ratings_table = {
+    head: [
+        {
+            id: 1,
+            title: '№',
+            position: 1,
+            show: true,
+            name: 'pos',
+            width: 50
+        },
+        {
+            id: 2,
+            title: 'Категория',
+            position: 2,
+            show: true,
+            name: 'category'
+        },
+        {
+            id: 3,
+            title: 'Продажи, шт.',
+            position: 3,
+            show: true,
+            name: 'sold'
+        },
+        {
+            id: 4,
+            title: 'Средняя выручка на товар, р.',
+            position: 4,
+            show: true,
+            name: 'avgrevenue'
+        },
+        {
+            id: 5,
+            title: 'Количество товаров',
+            position: 5,
+            show: true,
+            name: 'count'
+        },
+        {
+            id: 6,
+            title: 'Выручка, р.',
+            position: 6,
+            show: true,
+            name: 'revenue',
+            width: 110
+        }
+    ],
+    data: [
+        {
+            id: 1,
+            pos: 1,
+            category: 'Женщинам',
+            sold: '4 284',
+            avgrevenue: '4 125',
+            count: '15 874',
+            revenue: '12 847 985'
+        },
+        {
+            id: 2,
+            pos: 2,
+            category: 'Мужчинам',
+            sold: '3 879',
+            avgrevenue: '4 011',
+            count: '14 892',
+            revenue: '11 754 253'
+        },
+        {
+            id: 3,
+            pos: 3,
+            category: 'Детям',
+            sold: '3 612',
+            avgrevenue: '3 978',
+            count: '14 185',
+            revenue: '10 214 584'
+        },
+        {
+            id: 4,
+            pos: 4,
+            category: 'Детская электроника',
+            sold: '2 811',
+            avgrevenue: '3 847',
+            count: '10 465',
+            revenue: '9 251 325'
+        },
+        {
+            id: 5,
+            pos: 5,
+            category: 'Бытовая техника',
+            sold: '1 971',
+            avgrevenue: '3 748',
+            count: '8 754',
+            revenue: '8 124 754'
+        },
+        {
+            id: 6,
+            pos: 6,
+            category: 'Продукты',
+            sold: '1 897',
+            avgrevenue: '3 694',
+            count: '7 932',
+            revenue: '8 012 251'
+        },
+        {
+            id: 7,
+            pos: 7,
+            category: 'Для ремонта',
+            sold: '1 185',
+            avgrevenue: '3 485',
+            count: '6 214',
+            revenue: '6 215 897'
+        },
+        {
+            id: 8,
+            pos: 8,
+            category: 'Спорт',
+            sold: '978',
+            avgrevenue: '3 210',
+            count: '5 624',
+            revenue: '5 984 654'
+        },
+        {
+            id: 9,
+            pos: 9,
+            category: 'Зоотовары',
+            sold: '874',
+            avgrevenue: '2 879',
+            count: '4 231',
+            revenue: '4 125 411'
+        },
+        {
+            id: 10,
+            pos: 10,
+            category: 'Здоровье',
+            sold: '687',
+            avgrevenue: '2 418',
+            count: '3 654',
+            revenue: '2 124 847'
+        }
+    ]
+}
+
+export { 
+    main_table_data, 
+    categories, 
+    category_table_product, 
+    category_brand_product,
+    ratings_table
+}

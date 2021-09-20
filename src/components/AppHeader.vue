@@ -349,6 +349,7 @@ export default {
         line-height: 22px;
         letter-spacing: -0.01em;
         color: rgba(0, 0, 0, 0.9);
+        cursor: pointer;
     }
 
     .header__search-settings-popup-line {
