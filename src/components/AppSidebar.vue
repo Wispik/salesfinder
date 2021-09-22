@@ -128,7 +128,7 @@ export default {
                         id: 13,
                         icon: 'lists.svg',
                         title: 'Мои списки',
-                        route: '/'
+                        route: '/lists'
                     },
                     {
                         id: 14,
@@ -166,6 +166,7 @@ export default {
         background: #354052;
         display: flex;
         flex-direction: column;
+        flex-shrink: 0;
     }
 
     .sidebar__logo {

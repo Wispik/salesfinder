@@ -14,10 +14,10 @@
       </div>
       <div class="rating-params">
           <app-select 
-                :items="select_items"
-                v-model="select_model"
-                default=5
-                width=288
+            :items="select_items"
+            v-model="select_model"
+            default=5
+            width=288
           />
           <range-calendar 
             v-model='calendar'

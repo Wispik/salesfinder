@@ -28,6 +28,16 @@ const routes = [
     path: '/wb/category/info-v2',
     name: 'CategoryInfov2',
     component: () => import('../views/CategoryInfo_v2.vue')
+  },
+  {
+    path: '/lists',
+    name: 'Lists',
+    component: () => import('../views/Lists.vue')
+  },
+  {
+    path: '/list/:id',
+    name: 'ListView',
+    component: () => import('../views/ListView.vue')
   }
 ]
 

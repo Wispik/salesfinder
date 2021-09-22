@@ -208,7 +208,7 @@ export default {
         height: 85px;
         background: #FBFBFB;
         box-shadow: inset 0px -1px 0px rgba(0, 0, 0, 0.12);
-        padding: 0 24px;
+        padding: 20px 24px;
         display: flex;
         flex-flow: row nowrap;
         align-items: center;

@@ -122,6 +122,59 @@
                 :height="350"
             />
         </div>
+        <div class="main-title">
+            Таблица продаж по категории
+        </div>
+        <div class="cat-info__tabs">
+          <app-tabs 
+            :tabs=tabs_tables
+            v-model=tabs_tables_model
+          >
+            <button class="btn-outline btn-width-auto">
+                <img :src="require(`@/assets/images/icons/save.svg`)">
+                Сохранить
+            </button>
+            <button 
+                class="btn-outline btn-width-auto"
+                @click.stop="show_table_settings_collumns=true"    
+            >
+                <img :src="require(`@/assets/images/icons/settings.svg`)">
+                Вид
+            </button>
+            <button 
+                class="btn-outline btn-width-auto"
+                @click.stop="show_table_settings_filters=true"
+            >
+                <img :src="require(`@/assets/images/icons/filters.svg`)">
+                Фильтры
+            </button>
+            <button class="btn-outline btn-width-auto">
+                <img :src="require(`@/assets/images/icons/export.svg`)">
+                Экспорт
+            </button>
+        </app-tabs>
+        </div>
+        <div class="cat-info__tables">
+            <category-table 
+                :config="activeTable"
+                v-if="activeTable.data"
+            />
+        </div>
+        <table-settings-collumns 
+            :show="show_table_settings_collumns" 
+            @close="show_table_settings_collumns=false"
+            v-model="activeTable.head"
+        />
+        <table-settings-filters
+            :show="show_table_settings_filters"
+            @close="show_table_settings_filters=false"
+            v-model="activeTable"
+        />
+        <selected-table-items
+            v-if="selectedItems.length > 0"
+            :items="selectedItems"
+            @deselect="deselect"
+        />
   </div>
 </template>
 
@@ -132,6 +185,12 @@ import RangeCalendar from '@/components/RangeCalendar.vue';
 import { FadeTransition } from 'vue2-transitions'
 import CellInfo from '@/components/CellInfo2.vue';
 import LineChart from '@/components/charts/LineChart.vue'
+import TableSettingsFilters from '@/components/TableSettingsFilters.vue'
+import TableSettingsCollumns from '@/components/TableSettingsCollumns.vue'
+import SelectedTableItems from '@/components/SelectedTableItems.vue'
+import CategoryTable from '@/components/CategoryTable.vue';
+
+import { category_table_product, category_brand_product } from '@/fake'
 
 export default {
     data() {
@@ -255,7 +314,49 @@ export default {
                     },
                 }
             },
-            chartLabels: []
+            chartLabels: [],
+            tabs_tables: [
+                {
+                    id: 1,
+                    title: 'Товары'
+                },
+                {
+                    id: 2,
+                    title: 'Бренды'
+                },
+                {
+                    id: 3,
+                    title: 'Продавцы'
+                },
+                {
+                    id: 4,
+                    title: 'Подкатегории'
+                },
+            ],
+            tabs_tables_model: {
+                id: 1,
+                title: 'Товары'
+            },
+            show_table_settings_collumns: false,
+            show_table_settings_filters: false,
+            tables_data: [
+                {
+                    id: 1,
+                    table_data: {}
+                },
+                {
+                    id: 2,
+                    table_data: {}
+                },
+                {
+                    id: 3,
+                    table_data: {}
+                },
+                {
+                    id: 4,
+                    table_data: {}
+                }
+            ]
         }
     },
     components: {
@@ -264,9 +365,27 @@ export default {
         AppTabs,
         AppSelect,
         CellInfo,
-        LineChart
+        LineChart,
+        TableSettingsFilters,
+        TableSettingsCollumns,
+        SelectedTableItems,
+        CategoryTable
     },
     mounted() {
+        let data = [...category_table_product.data, ...category_table_product.data, ...category_table_product.data]
+        data = [...data, ...data]
+        data = [...data, ...data, ...data, ...data]
+        data = [...data, ...data, ...data]
+        data = JSON.parse(JSON.stringify(data))
+        data.forEach((el, index) => {
+            el.id = index
+        });
+        this.tables_data[0].table_data = category_table_product
+        this.tables_data[0].table_data.data = data
+
+        this.tables_data[1].table_data = category_brand_product
+
+
         const rand = () => Math.floor(Math.random( ) * (900 - 100 + 1)) + 100
         for (let i = 1; i < 30; i++) {
             this.chartLabels.push(`${i}.08.2021`)
@@ -295,11 +414,33 @@ export default {
                 })
             })
             this.chartData = JSON.parse(JSON.stringify(data))
+        },
+        deselect() {
+            this.activeTable.data.forEach(el => {
+                el.checked = false
+            })
         }
     },
     computed: {
         selectedChartItems() {
             return this.select_chart_items.filter(el => el.checked)
+        },
+        activeTable() {
+            let t = this.tables_data.find(item => item.id == this.tabs_tables_model.id)
+            return t ? t.table_data: null
+        },
+        selectedItems() {
+            if (this.activeTable && this.activeTable.data) {
+                let res = []
+                this.activeTable.data.forEach(el => {
+                    if (el.checked) res.push(el)
+                })
+                return res
+            }
+            else
+            {
+                return []
+            }
         }
     },
     watch: {

@@ -1,10 +1,13 @@
 <template>
   <div class="cat-table">
-      <vue-custom-scrollbar class="table-block" :settings="scrollSettings">
+      <vue-custom-scrollbar  
+        :class="tableBlockClass" 
+        :settings="scrollSettings"  
+      >
         <table class="cat-table__table">
           <tbody>
             <tr class="cat-table__thead">
-              <td class="cat-table__thead-th" width="50" v-if="checked">
+              <td class="cat-table__thead-th cat-table__thead-th-align-centr" width="50" v-if="checked">
                 <div class="cat-table__thead-th-cell">
                   <checkbox v-model="select_all" rounded/>
                 </div>
@@ -47,10 +50,22 @@
               >
                 <div 
                   class="cat-table__td-cell"
-                  :class="{'align-right': isNum(item[h.name]),'cat-table__td-text-overflow': h.name=='topic','cat-table__td-link': h.name=='topic' || h.name=='brand' || h.name=='seller'
-                    }
+                  :class="{'align-right': isNum(item[h.name]),'cat-table__td-text-overflow': h.name=='topic','cat-table__td-link': h.name=='topic' || h.name=='brand' || h.name=='seller' || (h.type && h.type == 'link')}
                   "
+                  @click="clickCell(h, item.id)"
                 >
+                  <div 
+                    class="cat-table__button"
+                    v-if="h.name=='_editrow'"
+                  >
+                    <app-select 
+                      :items="select_row_options"
+                      v-model="select_row_model"
+                      iconMisc
+                      width=28
+                      @select="clickRowSelectItem(item, ...arguments)"
+                    />
+                  </div>
                   <div 
                     class="cat-table__td-title-image"
                     v-if="h.name=='title' && item.image"
@@ -125,6 +140,10 @@ export default {
     },
     checked: {
       default: true
+    },
+    disableScroll: {
+      default: false,
+      type: Boolean
     }
   },
   data() {
@@ -132,27 +151,39 @@ export default {
       scrollSettings: {
         suppressScrollX: false,
         suppressScrollY: false,
-        wheelPropagation: true
+        wheelPropagation: true,
+        swicher: false
       },
       select_options: [
         {
           id: 1,
-          title: 20
+          title: '20'
         },
         {
           id: 2,
-          title: 50
+          title: '50'
         },
         {
           id: 3,
-          title: 100
+          title: '100'
         }
       ],
       select_model: null,
       select_all: false,
       page: 1,
       sortedBy: null,
-      sortedAsc: true
+      sortedAsc: true,
+      select_row_options: [
+        {
+          id: 1,
+          title: 'Удалить'
+        },
+        {
+          id: 2,
+          title: 'Редактировать'
+        }
+      ],
+      select_row_model: null
     }
   },
   created() {
@@ -160,13 +191,27 @@ export default {
   },
   methods: {
     setSortBy(col) {
+      if (col == '_editrow') return
       if (this.sortedBy == col) this.sortedAsc = !this.sortedAsc
       else this.sortedAsc = true
       this.sortedBy = col
       this.page = 1
     },
     isNum(i) {
+      if (!i) return false
       return typeof i === 'number' || i.slice(-1) === '₽' 
+    },
+    clickRowSelectItem(row, item) {
+      if (item.title == 'Удалить') {
+        this.$emit('deleteRow', row)
+      } else if (item.title == 'Редактировать') {
+        this.$emit('editRow', row)
+      }
+    },
+    clickCell(h, id) {
+      if (h.type && h.type == 'link') {
+        this.$router.push({name: `${h.routeName}`, params: {id: id}})
+      }
     }
   },
   computed: {
@@ -238,6 +283,9 @@ export default {
         return Math.ceil(this.config.data.length / this.select_model.title)
       }
       return 1
+    },
+    tableBlockClass() {
+      return this.disableScroll ? 'disable-scroll table-block' : 'table-block'
     }
   },
   components: {
@@ -252,7 +300,7 @@ export default {
       this.actualData.forEach(el => {
         el.checked = newVal
       })
-    }
+    },
   }
 }
 </script>
@@ -337,7 +385,7 @@ export default {
     transition: 0.4s;
   }
 
-  .cat-table__thead-th:first-child > .cat-table__thead-th-cell{
+  .cat-table__thead-th.cat-table__thead-th-align-centr{
     border-radius: 4px 0 0 4px;
     justify-content: center;
   }
@@ -373,7 +421,10 @@ export default {
 
   .table-block {
     position: relative;
-    overflow-x: scroll;
+  }
+
+  .table-block.disable-scroll {
+    overflow: visible !important;
   }
 
   .cat-table__td-w50 {
@@ -435,5 +486,13 @@ export default {
   .cat-table__td-link {
     cursor: pointer;
     color: #316D92;
+  }
+
+  .cat-table__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
   }
 </style>
