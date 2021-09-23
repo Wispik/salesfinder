@@ -230,7 +230,7 @@ export default {
         font-weight: 300;
         font-size: 2.4rem;
         line-height: 2.8rem;
-        margin-top: 20%;
+        margin-top: 200px;
     }
 
     .lists-page__none-text {
