@@ -24,6 +24,13 @@
                     >
                         Отмена
                     </button>
+                    <button
+                        v-if="btnNext"
+                        class="btn-outline"
+                        @click="$emit('success')"  
+                    >
+                        Пропустить этот шаг
+                    </button>
                     <button 
                         v-if="btnDanger"
                         class="btn-blue btn-red"
@@ -58,6 +65,10 @@ export default {
             default: ''
         },
         btnDanger: {
+            type: Boolean,
+            default: false
+        },
+        btnNext: {
             type: Boolean,
             default: false
         },

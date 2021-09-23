@@ -19,8 +19,8 @@
               </div>
               <button class="btn-outline btn-width-auto" @click="showModalAdd=true">
                 <img :src="require(`@/assets/images/icons/plus.svg`)">
-                Добавить список
-            </button>
+                Новый список
+              </button>
           </div>
           <category-table 
               :config="actualTableData"
@@ -115,24 +115,32 @@ export default {
                 },
                 {
                     id: 4,
-                    title: 'Позиций в поиске',
-                    name: 'pos',
+                    title: 'Маркетплейс',
+                    name: 'marketplace',
                     position: 4,
                     show: true,
-                    width: 180
+                    width: 120
                 },
                 {
                     id: 5,
-                    title: 'Описание',
-                    name: 'description',
+                    title: 'Кол-во',
+                    name: 'pos',
                     position: 5,
-                    show: true
+                    show: true,
+                    width: 100
                 },
                 {
                     id: 6,
+                    title: 'Описание',
+                    name: 'description',
+                    position: 6,
+                    show: true
+                },
+                {
+                    id: 7,
                     title: '',
                     name: '_editrow',
-                    position: 6,
+                    position: 7,
                     show: true,
                     width: 60
                 }
@@ -191,7 +199,7 @@ export default {
             }
         },
         textModalDelete() {
-            return `Вы действительно хотите удалить список "${this.deletedRow.title}"`
+            return `Вы действительно хотите удалить список "${this.deletedRow.title}"?`
         },
     },
     components: {
@@ -215,7 +223,6 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
     }
 
     .lists-page__none-title {
@@ -223,6 +230,7 @@ export default {
         font-weight: 300;
         font-size: 2.4rem;
         line-height: 2.8rem;
+        margin-top: 20%;
     }
 
     .lists-page__none-text {

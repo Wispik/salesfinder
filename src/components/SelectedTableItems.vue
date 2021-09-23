@@ -123,7 +123,7 @@ export default {
             this.lists = this.USER_LISTS.map(
             item => ({
                 id: item.id,
-                title: `${item.title} (0 позиций)`,
+                title: `${item.title} (0 шт.)`,
                 selected: false
             })
             )
@@ -198,6 +198,11 @@ export default {
         gap: 12px;
         align-items: center;
         justify-content: space-between;
+    }
+
+    .modal-list-item:hover {
+        transition: .2s;
+        border: 1px solid #316D92;
     }
 
     .modal-list-item.modal-list-item-selected {

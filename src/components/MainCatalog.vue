@@ -156,7 +156,7 @@ export default {
                     show_popup: false
                 }
             ],
-            categories: categories
+            categories: []
         }
     },
     components: {
@@ -166,7 +166,7 @@ export default {
     methods: {
         openPopup(id) {
             this.catalog_items.forEach(item => {
-                if (item.id == id) {
+                if (item.c_id == id) {
                     item.show_popup = true
                 }
                 else {
@@ -190,16 +190,18 @@ export default {
     async mounted() {
         // let data = await api.getCategories(0)
         
-        // this.catalog_items = data.data.map(item => ({
+        // let c = categories.map(item => ({
         //     ...item,
         //     show_popup: false
         // }))
 
-        // this.categories = this.catalog_items.map(item => ({
+        // this.categories = c.map(item => ({
         //     ...item,
         //     checked: false,
         //     show: true
         // }))
+
+        this.categories = [...categories]
 
     }
 }

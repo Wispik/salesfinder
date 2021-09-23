@@ -1,15 +1,30 @@
 <template>
     <div class="list-page" v-if="list">
         <div class="list-page__title">
-            <router-link
-                class="list-page__title-link"
-                :to="{name: 'Lists'}"
-            >
-                <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18.9999 6.99997H4.41394L9.70694 1.70697L8.29294 0.292969L0.585938 7.99997L8.29294 15.707L9.70694 14.293L4.41394 8.99997H18.9999V6.99997Z" fill="black" fill-opacity="0.9"/>
-                </svg>
+            <div class="list-page__title-block">
+                <router-link
+                    class="list-page__title-link"
+                    :to="{name: 'Lists'}"
+                >
+                    <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.9999 6.99997H4.41394L9.70694 1.70697L8.29294 0.292969L0.585938 7.99997L8.29294 15.707L9.70694 14.293L4.41394 8.99997H18.9999V6.99997Z" fill="#316D92" fill-opacity="0.9"/>
+                    </svg>
+                </router-link>
                 {{ list.title }}
-            </router-link>
+            </div>
+            <div class="list-page__title-buttons">
+                <range-calendar 
+                    v-model='calendar'
+                />
+            </div>
+        </div>
+        <div class="list-page__title">
+            <div class="list-page__title-block">
+                <button class="btn-outline btn-width-auto" @click="showModalEditLists=true">
+                    <img :src="require(`@/assets/images/icons/plus.svg`)">
+                    Добавить в список
+                </button>
+            </div>
             <div class="list-page__title-buttons">
                 <button 
                     class="btn-outline btn-width-auto"
@@ -54,6 +69,12 @@
             @delete="deleteItem"
             deleteButton
         />
+        <modal-add-list
+            :show="showModalEditLists"
+            @close="showModalEditLists=false"
+            :updated="true"
+            :id="list.id"
+        />
     </div>
 </template>
 
@@ -63,6 +84,8 @@ import TableSettingsFilters from '@/components/TableSettingsFilters.vue'
 import TableSettingsCollumns from '@/components/TableSettingsCollumns.vue'
 import SelectedTableItems from '@/components/SelectedTableItems.vue'
 import CategoryTable from '@/components/CategoryTable.vue';
+import RangeCalendar from '@/components/RangeCalendar.vue';
+import ModalAddList from '@/components/modals/ModalAddList.vue';
 
 import { category_table_product } from '@/fake'
 
@@ -72,7 +95,9 @@ export default {
             list: null,
             show_table_settings_collumns: false,
             show_table_settings_filters: false,
-            table_data: {}
+            showModalEditLists: false,
+            table_data: {},
+            calendar: ['', '']
         }
     },
     mounted() {
@@ -116,7 +141,9 @@ export default {
         TableSettingsFilters,
         TableSettingsCollumns,
         SelectedTableItems,
-        CategoryTable
+        CategoryTable,
+        RangeCalendar,
+        ModalAddList
     }
 }
 </script>
@@ -137,7 +164,7 @@ export default {
         justify-content: space-between;
     }
 
-    .list-page__title-link {
+    .list-page__title-block {
         display: flex;
         align-items: center;
         gap: 11px;
@@ -145,8 +172,10 @@ export default {
         font-weight: 300;
         font-size: 2.4rem;
         line-height: 2.8rem;
+    }
+
+    .list-page__title-link {
         cursor: pointer;
-        text-decoration: none;
     }
 
     .list-page__title-buttons {
