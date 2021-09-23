@@ -15,7 +15,7 @@
                 </button>
                 <button 
                     class="btn btn-outline"
-                    @click="deleteFromList"    
+                    @click="showModalDeleteFromList=true"    
                     v-if="deleteButton"
                 >
                     <img :src="require(`@/assets/images/icons/trash.svg`)">
@@ -59,7 +59,16 @@
         <modal-add-list
             :show="showModalCreateList"
             @close="showModalCreateList=false"
-        />    
+        />
+        <modal
+            title="Удаление списка"
+            btnDanger
+            v-if="showModalDeleteFromList"
+            @close="showModalDeleteFromList=false"
+            @success="deleteFromList"
+        >
+            {{ compDeleteModalText }}
+        </modal>
     </div>
 </template>
 
@@ -84,6 +93,7 @@ export default {
         return {
             showModalAddToList: false,
             showModalCreateList: false,
+            showModalDeleteFromList: false,
             lists: []
         }
     },
@@ -100,6 +110,17 @@ export default {
                 return `${len} позиции`
             else
                 return `${len} позиций`
+        },
+        compDeleteModalText() {
+            const len = this.items.length
+            let s = ''
+            if ( len == 1 )
+                s =  `позицию`
+            else if ( 2 < len < 4 )
+                s =  `позиции`
+            else
+                s =  `позиций`
+            return `Вы действительно хотите удалить ${len} ${s} из этого списка?`
         }
     },
     methods: {

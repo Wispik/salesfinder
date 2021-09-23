@@ -19,6 +19,7 @@
                 </div>
                 <div class="modal-footer">
                     <button
+                        v-if="btnClose"
                         class="btn-outline"
                         @click="$emit('close')"  
                     >
@@ -71,6 +72,10 @@ export default {
         btnNext: {
             type: Boolean,
             default: false
+        },
+        btnClose: {
+            type: Boolean,
+            default: true
         },
         width: {
             default: 420
