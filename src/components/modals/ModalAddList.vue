@@ -4,7 +4,7 @@
         :btnConfirmTitle="compModalAddButtonTitle"
         :btnNext="!updated && showModalAdd2"
         :btnClose="!(!updated && showModalAdd2)"
-        :width="!updated && showModalAdd2 ? 600 : 420"
+        :width="showModalAdd2 ? 600 : 420"
         v-if="showModalAdd"
         @close="closeModalAddFunc"
         @success="addList"
