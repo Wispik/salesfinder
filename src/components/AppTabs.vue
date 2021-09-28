@@ -23,18 +23,33 @@ export default {
     prop: 'modelValue',
     event: 'change'
   },
-  props: ['tabs', 'modelValue'],
+  props: {
+    tabs: {
+      required: true
+    },
+    modelValue: {
+      required: true
+    },
+    name: {
+      default: 'tab'
+    }
+  },
   computed: {
     idActiveTab() {
       if (this.modelValue instanceof Object) {
         return this.modelValue.id
       }
-      this.clickTab(this.tabs[0])
+      let tabId = this.$route.query[this.name]
+      let tab = this.tabs.find(item => item.id == tabId)
+      this.clickTab(tab ? tab : this.tabs[0])
       return this.tabs[0].id
     }
   },
   methods: {
     clickTab(tab) {
+      if (!(this.$route.query[this.name] && this.$route.query[this.name] == tab.id)) {
+        this.$router.replace({ query: {[this.name]: tab.id} })
+      }
       this.$emit('change', tab)
     }
   }

@@ -12,6 +12,7 @@
           <app-tabs 
             :tabs=tabs_charts
             v-model=tabs_charts_active
+            name="maintab"
           >
             <fade-transition>
                 <app-select 
@@ -129,6 +130,7 @@
           <app-tabs 
             :tabs=tabs_tables
             v-model=tabs_tables_model
+            name="tabletabs"
           >
             <button class="btn-outline btn-width-auto">
                 <img :src="require(`@/assets/images/icons/save.svg`)">
