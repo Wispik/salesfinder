@@ -35,41 +35,43 @@
           </button>
       </div>
       <div class="rating-constructor" v-if="tabs_active && tabs_active.id==8">
-          <div 
-            class="rating-constructor__item"
-            v-for="item in constructor"
-            :key="item.id"
-          >
-            <app-select 
-                :items="select_items"
-                v-model="item.select_model"
-                width=288
-            />
-            <label class="rating-constructor__item-label">
-                От
-                <input 
-                    type="text" 
-                    class="rating-constructor__item-input"
-                    placeholder="100"
-                    v-model="item.input_from"    
-                >
-            </label>
-            <label class="rating-constructor__item-label">
-                До
-                <input 
-                    type="text" 
-                    class="rating-constructor__item-input"
-                    placeholder="500"
-                    v-model="item.input_to"    
-                >
-            </label>
-            <img 
-                class="rating-constructor__button-x"
-                :src="require(`@/assets/images/icons/red circle_close.png`)"
-                @click="deleteItemFromConstructor(item.id)"
-                v-if="item.id != 1"
+          <fade-transition group>
+            <div 
+                class="rating-constructor__item"
+                v-for="item in constructor"
+                :key="item.id"
             >
-          </div>
+                <app-select 
+                    :items="select_items"
+                    v-model="item.select_model"
+                    width=288
+                />
+                <label class="rating-constructor__item-label">
+                    От
+                    <input 
+                        type="text" 
+                        class="rating-constructor__item-input"
+                        placeholder="100"
+                        v-model="item.input_from"    
+                    >
+                </label>
+                <label class="rating-constructor__item-label">
+                    До
+                    <input 
+                        type="text" 
+                        class="rating-constructor__item-input"
+                        placeholder="500"
+                        v-model="item.input_to"    
+                    >
+                </label>
+                <img 
+                    class="rating-constructor__button-x"
+                    :src="require(`@/assets/images/icons/red circle_close.png`)"
+                    @click="deleteItemFromConstructor(item.id)"
+                    v-if="item.id != 1"
+                >
+            </div>
+          </fade-transition>
       </div>
       <div 
         class="rating-constructor__button" 
@@ -128,6 +130,7 @@ import RangeCalendar from '@/components/RangeCalendar.vue';
 import CategoryTable from '@/components/CategoryTable.vue';
 import TableSettingsFilters from '@/components/TableSettingsFilters.vue'
 import TableSettingsCollumns from '@/components/TableSettingsCollumns.vue'
+import { FadeTransition } from 'vue2-transitions'
 
 import { ratings_table } from '@/fake'
 
@@ -274,7 +277,8 @@ export default {
         RangeCalendar,
         CategoryTable,
         TableSettingsFilters,
-        TableSettingsCollumns
+        TableSettingsCollumns,
+        FadeTransition
     }
 }
 </script>
