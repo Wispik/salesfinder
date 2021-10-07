@@ -38,6 +38,33 @@ const routes = [
     path: '/list/:id',
     name: 'ListView',
     component: () => import('../views/ListView.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('../views/Login.vue'),
+    meta: {
+      layout: "empty-layout",
+      action: "login"
+    }
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: () => import('../views/Login.vue'),
+    meta: {
+      layout: "empty-layout",
+      action: "register"
+    }
+  },
+  {
+    path: '/restorepassword',
+    name: 'RestorePassword',
+    component: () => import('../views/Login.vue'),
+    meta: {
+      layout: "empty-layout",
+      action: "restorepassword"
+    }
   }
 ]
 

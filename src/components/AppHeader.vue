@@ -71,12 +71,30 @@
               </div>
           </slide-y-up-transition>
       </div>
-      <div class="header__user">
+      <div class="header__user" v-if="is_user_auth">
           <img :src="require(`@/assets/images/header/user.svg`)" alt="User">
           <span class="header__user-email">
             antonio888@gmail.com
           </span>
           <img :src="require(`@/assets/images/header/arrow.svg`)">
+      </div>
+      <div class="header__auth-buttons" v-else>
+          <router-link
+            class="btn-outline"
+            :to="{name: 'Login'}"
+            active-class=''
+            tag="button"
+          >
+            Вход
+          </router-link>
+          <router-link
+            class="btn-header-register"
+            :to="{name: 'Register'}"
+            active-class=''
+            tag="button"
+          >
+            Регистрация
+          </router-link>
       </div>
   </header>
 </template>
@@ -88,6 +106,7 @@ import { SlideYUpTransition } from 'vue2-transitions'
 export default {
     data() {
         return {
+            is_user_auth: false,
             header_search: '',
             cb_wb: true,
             cb_ozon: true,
@@ -408,5 +427,24 @@ export default {
         font-weight: normal;
         font-size: 1.2rem;
         line-height: 1.6rem;
+    }
+
+    .header__auth-buttons {
+        display: flex;
+        flex-flow: row nowrap;
+        gap: 10px;
+        margin-left: auto;
+    }
+
+    .btn-header-register {
+        background: #283140;
+        border-radius: 4px;
+        box-shadow: 0px 1px 3px #0000001f;
+        color: #ffffff;
+        width: 150px;
+
+        &:hover {
+            background: lighten(#283140, 8%);
+        }
     }
 </style>
