@@ -44,7 +44,7 @@
                             class="login-page__form-input-img"    
                         >
                         <img 
-                            :src="require(`@/assets/images/icons/circle_close.svg`)"
+                            :src="require(`@/assets/images/icons/close.svg`)"
                             v-if="item.show_error"
                             class="login-page__form-input-img"    
                         >
