@@ -373,7 +373,7 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 5px;
-        font-weight: 400;
+        font-weight: 500;
         font-size: 1.4rem;
         line-height: 2.1rem;
         color: #5C5D5D;
@@ -390,7 +390,8 @@ export default {
     .login-page__form-input-error {
         flex: 1;
         text-align: right;
-        color: #DD375B;
+        font-weight: 400;
+        color: #BB2229;
     }
     .login-page__form-input {
         height: 40px;
