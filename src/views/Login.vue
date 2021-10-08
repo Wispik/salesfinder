@@ -30,7 +30,24 @@
                 >
                     <div class="login-page__form-input-block-title">
                         <div class="login-page__form-input-title">{{ item.title }}</div>
-                        <div class="login-page__form-input-error" v-if="item.show_error">{{ item.error_text }}</div>
+                        <fade-transition>
+                            <div 
+                                class="login-page__form-input-error"
+                                v-if="item.show_error"
+                            >
+                                {{ item.error_text }}
+                            </div>
+                        </fade-transition>
+                        <img 
+                            :src="require(`@/assets/images/icons/success.svg`)"
+                            v-if="item.show_success"
+                            class="login-page__form-input-img"    
+                        >
+                        <img 
+                            :src="require(`@/assets/images/icons/circle_close.svg`)"
+                            v-if="item.show_error"
+                            class="login-page__form-input-img"    
+                        >
                     </div>
                     <div 
                         class="login-page__form-input"
@@ -43,14 +60,6 @@
                             @focus="item.active=true"
                             @blur="checkInputData(item)"
                         >
-                        <img 
-                            :src="require(`@/assets/images/icons/success.png`)"
-                            v-if="item.show_success"    
-                        >
-                        <img 
-                            :src="require(`@/assets/images/icons/red circle_close1.png`)"
-                            v-if="item.show_error"    
-                        >
                         <svg 
                             width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg"
                             v-if="item.type=='password'"
@@ -61,7 +70,7 @@
                         </svg>
                     </div>
                 </div>
-                <div class="login-page__button">
+                <div class="login-page__button" @click="clickBtn">
                     {{ titleButton }}
                 </div>
                 <div 
@@ -137,6 +146,8 @@
 </template>
 
 <script>
+import { FadeTransition } from 'vue2-transitions'
+
 export default {
     data() {
         return {
@@ -226,12 +237,6 @@ export default {
     methods: {
         checkInputData(item) {
             item.active=false
-            if (item.model.length == 0) {
-                item.error_text = 'Поле необходимо заполнить'
-                item.show_error = true
-                item.show_success = false
-                return
-            }
             if (item.type == 'email') {
                 const re = /\S+@\S+\.\S+/
                 let valid_email = re.test(item.model)
@@ -267,6 +272,14 @@ export default {
             }
             item.show_error = false
             item.show_success = true
+        },
+        clickBtn() {
+            let emptyInputs = this.active_inputs.filter(item => item.model.length == 0)
+            emptyInputs.forEach(item => {
+                item.error_text = 'Поле необходимо заполнить'
+                item.show_error = true
+                item.show_success = false
+            })
         }
     },
     computed: {
@@ -296,6 +309,9 @@ export default {
         $route() {
             this.active_inputs = [...this.inputs[this.action]]
         }
+    },
+    components: {
+        FadeTransition
     }
 }
 </script>
@@ -357,7 +373,7 @@ export default {
         display: flex;
         flex-direction: column;
         gap: 5px;
-        font-weight: 500;
+        font-weight: 400;
         font-size: 1.4rem;
         line-height: 2.1rem;
         color: #5C5D5D;
@@ -368,12 +384,13 @@ export default {
     .login-page__form-input-block-title {
         display: flex;
         flex-flow: row nowrap;
+        align-items: center;
         gap: 5px;
     }
     .login-page__form-input-error {
         flex: 1;
         text-align: right;
-        color: #C61B19;
+        color: #DD375B;
     }
     .login-page__form-input {
         height: 40px;
@@ -398,13 +415,14 @@ export default {
             }
         }
 
-        & > img {
-            height: 18px;
-        }
-
         &.active {
             border: 1px solid #316d92;
         }
+    }
+    .login-page__form-input-img {
+        width: 18px;
+        margin-left: auto;
+        margin-right: 12px;
     }
     .icon-eye{
         cursor: pointer;

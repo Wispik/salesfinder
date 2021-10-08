@@ -66,7 +66,7 @@
                 </label>
                 <img 
                     class="rating-constructor__button-x"
-                    :src="require(`@/assets/images/icons/red circle_close.png`)"
+                    :src="require(`@/assets/images/icons/circle_close.svg`)"
                     @click="deleteItemFromConstructor(item.id)"
                     v-if="item.id != 1"
                 >
@@ -361,6 +361,7 @@ export default {
 
     .rating-constructor__button-x {
         cursor: pointer;
+        width: 22px;
     }
 
     .rating-constructor__button {
