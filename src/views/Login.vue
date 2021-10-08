@@ -46,7 +46,7 @@
                         <img 
                             :src="require(`@/assets/images/icons/close.svg`)"
                             v-if="item.show_error"
-                            class="login-page__form-input-img"    
+                            class="login-page__form-input-img img-error"    
                         >
                     </div>
                     <div 
@@ -423,6 +423,10 @@ export default {
         width: 18px;
         margin-left: auto;
         margin-right: 12px;
+
+        &.img-error {
+            width: 15px;
+        }
     }
     .icon-eye{
         cursor: pointer;
