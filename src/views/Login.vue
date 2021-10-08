@@ -237,6 +237,12 @@ export default {
     methods: {
         checkInputData(item) {
             item.active=false
+            if (item.model.length == 0) {
+                item.show_error = false
+                item.show_success = false
+                return
+            }
+            if (this.action == 'login') return
             if (item.type == 'email') {
                 const re = /\S+@\S+\.\S+/
                 let valid_email = re.test(item.model)
@@ -276,7 +282,7 @@ export default {
         clickBtn() {
             let emptyInputs = this.active_inputs.filter(item => item.model.length == 0)
             emptyInputs.forEach(item => {
-                item.error_text = 'Поле необходимо заполнить'
+                item.error_text = 'Заполните это поле'
                 item.show_error = true
                 item.show_success = false
             })
